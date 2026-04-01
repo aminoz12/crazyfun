@@ -1,6 +1,6 @@
-import { FREE_DELIVERY_THRESHOLD_USD } from "@/lib/delivery";
+import { FREE_DELIVERY_THRESHOLD_EUR } from "@/lib/delivery";
 
-const MESSAGE = `FREE DELIVERY FOR ORDERS ABOVE ${FREE_DELIVERY_THRESHOLD_USD} USD`;
+const MESSAGE = `LIVRAISON OFFERTE À PARTIR DE ${FREE_DELIVERY_THRESHOLD_EUR} €`;
 
 /**
  * Full-width scrolling promo strip at the very top of the site (above the nav).

@@ -9,10 +9,10 @@ export function HowItWorks() {
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="text-center">
           <p className="text-sm font-extrabold uppercase tracking-widest text-primary-dark">
-            How it works
+            Comment ça marche
           </p>
           <h2 className="mt-2 font-[family-name:var(--font-fredoka)] text-3xl font-bold text-foreground sm:text-4xl">
-            Three steps. One plot twist.
+            Trois étapes. Un rebondissement.
           </h2>
         </div>
 

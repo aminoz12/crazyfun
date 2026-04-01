@@ -12,13 +12,13 @@ export function Pricing() {
     >
       <div className="text-center">
         <p className="text-sm font-extrabold uppercase tracking-widest text-accent">
-          Pricing
+          Tarifs
         </p>
         <h2 className="mt-2 font-[family-name:var(--font-fredoka)] text-3xl font-bold text-foreground sm:text-4xl">
-          Pick your bundle. Embrace the mystery.
+          Choisissez votre lot. Plongez dans le mystère.
         </h2>
         <p className="mx-auto mt-3 max-w-2xl text-sm font-semibold text-muted sm:text-base">
-          Each option checks out securely with Stripe — no account required.
+          Chaque option est payée en toute sécurité avec Stripe — sans compte.
         </p>
       </div>
 

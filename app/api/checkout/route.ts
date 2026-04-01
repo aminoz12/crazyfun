@@ -7,13 +7,16 @@ import { getStripe } from "@/lib/stripe-server";
 /**
  * Creates a Stripe Checkout Session (payment) for the single product:
  * line 1 = unit price × quantity; optional line 2 = delivery (waived when
- * subtotal meets FREE_DELIVERY_THRESHOLD_USD via lib/delivery).
+ * subtotal meets FREE_DELIVERY_THRESHOLD_EUR via lib/delivery).
  */
 export async function POST(request: Request) {
   const secret = process.env.STRIPE_SECRET_KEY?.trim();
   if (!secret) {
     return NextResponse.json(
-      { error: "STRIPE_SECRET_KEY is not set. Add it to .env.local" },
+      {
+        error:
+          "STRIPE_SECRET_KEY n’est pas défini. Ajoutez-le dans .env.local",
+      },
       { status: 500 },
     );
   }
@@ -22,7 +25,7 @@ export async function POST(request: Request) {
   try {
     body = await request.json();
   } catch {
-    return NextResponse.json({ error: "Invalid JSON body" }, { status: 400 });
+    return NextResponse.json({ error: "Corps JSON invalide" }, { status: 400 });
   }
 
   const sizeId =
@@ -37,7 +40,7 @@ export async function POST(request: Request) {
 
   const option = singleProductOffer.options.find((o) => o.id === sizeId);
   if (!option) {
-    return NextResponse.json({ error: "Invalid size" }, { status: 400 });
+    return NextResponse.json({ error: "Taille invalide" }, { status: 400 });
   }
 
   const origin =
@@ -73,7 +76,7 @@ export async function POST(request: Request) {
         currency: "eur",
         unit_amount: deliveryAmount,
         product_data: {
-          name: "Delivery",
+          name: "Livraison",
         },
       },
     });
@@ -94,7 +97,7 @@ export async function POST(request: Request) {
 
     if (!session.url) {
       return NextResponse.json(
-        { error: "Stripe did not return a checkout URL" },
+        { error: "Stripe n’a pas renvoyé d’URL de paiement" },
         { status: 500 },
       );
     }
@@ -103,7 +106,7 @@ export async function POST(request: Request) {
   } catch (err) {
     console.error("[checkout]", err);
     const message =
-      err instanceof Error ? err.message : "Stripe checkout failed";
+      err instanceof Error ? err.message : "Échec du paiement Stripe";
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }

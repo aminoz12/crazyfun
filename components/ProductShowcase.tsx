@@ -31,10 +31,10 @@ export function ProductShowcase() {
         <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
           <div>
             <p className="text-sm font-extrabold uppercase tracking-widest text-primary-dark">
-              Product showcase
+              Mise en avant
             </p>
             <h2 className="mt-2 font-[family-name:var(--font-fredoka)] text-3xl font-bold text-foreground sm:text-4xl">
-              Soft. Squishy. Unserious.
+              Doux. Squishy. Pas sérieux.
             </h2>
             <ul className="mt-6 space-y-3 text-base font-semibold text-foreground">
               {benefits.map((b) => (
@@ -55,7 +55,7 @@ export function ProductShowcase() {
             <div
               className="relative aspect-[4/3] overflow-hidden rounded-[2rem] border border-pink-200 bg-pink-50 shadow-xl"
               aria-roledescription="carousel"
-              aria-label="Product images"
+              aria-label="Images produit"
             >
               <AnimatePresence mode="wait">
                 <motion.div
@@ -85,7 +85,7 @@ export function ProductShowcase() {
             <div
               className="mt-4 flex justify-center gap-1.5"
               role="tablist"
-              aria-label="Choose slide"
+              aria-label="Choisir l’image"
             >
               {showcaseSlides.map((s, i) => (
                 <button
@@ -93,7 +93,7 @@ export function ProductShowcase() {
                   type="button"
                   role="tab"
                   aria-selected={i === index}
-                  aria-label={`Image ${i + 1} of ${showcaseSlides.length}`}
+                  aria-label={`Image ${i + 1} sur ${showcaseSlides.length}`}
                   onClick={() => setIndex(i)}
                   className={`h-2.5 w-2.5 rounded-full transition ${
                     i === index ? "bg-accent" : "bg-pink-200"

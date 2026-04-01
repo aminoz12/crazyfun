@@ -5,9 +5,8 @@ import { useCallback, useEffect, useState } from "react";
 import { redirectToStripeCheckout } from "@/lib/checkout-client";
 import { resolveStripeCheckoutParams } from "@/lib/cart-helpers";
 import {
-  FREE_DELIVERY_THRESHOLD_USD,
+  FREE_DELIVERY_THRESHOLD_EUR,
   qualifiesForFreeDeliverySubtotalEur,
-  subtotalEurToUsdApprox,
 } from "@/lib/delivery";
 import { singleProductOffer } from "@/lib/data";
 import { useCartStore } from "@/lib/store/use-cart-store";
@@ -67,13 +66,13 @@ export function CartDrawer() {
       const resolved = resolveStripeCheckoutParams(first);
       if (!resolved) {
         throw new Error(
-          "This cart line can’t be checked out. Remove it and add the product again from the shop.",
+          "Cette ligne ne peut pas être payée. Supprimez-la et rajoutez le produit depuis la boutique.",
         );
       }
       await redirectToStripeCheckout(resolved.sizeId, resolved.quantity);
     } catch (e) {
       setCheckoutError(
-        e instanceof Error ? e.message : "Checkout could not start",
+        e instanceof Error ? e.message : "Le paiement n’a pas pu démarrer",
       );
       setCheckoutLoading(false);
     }
@@ -85,7 +84,7 @@ export function CartDrawer() {
         <>
           <motion.button
             type="button"
-            aria-label="Close cart overlay"
+            aria-label="Fermer l’arrière-plan du panier"
             className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -107,22 +106,22 @@ export function CartDrawer() {
                 id="cart-title"
                 className="font-[family-name:var(--font-fredoka)] text-xl font-bold"
               >
-                Your cart
+                Votre panier
               </h2>
               <button
                 type="button"
                 onClick={closeCart}
                 className="rounded-xl border border-pink-200 px-3 py-1.5 text-sm font-bold hover:bg-pink-50"
               >
-                Close
+                Fermer
               </button>
             </div>
 
             <div className="flex-1 overflow-y-auto px-5 py-4">
               {items.length === 0 ? (
                 <p className="text-sm font-semibold text-muted">
-                  Your cart is empty — pick a size on the product page and add
-                  it here, or tap Buy now.
+                  Votre panier est vide — choisissez une taille sur la fiche
+                  produit et ajoutez-la ici, ou appuyez sur Acheter.
                 </p>
               ) : (
                 <ul className="space-y-4">
@@ -137,7 +136,7 @@ export function CartDrawer() {
                             {line.name}
                           </p>
                           <p className="text-sm font-bold text-muted">
-                            {formatEuro(line.unitPriceEuro)} each
+                            {formatEuro(line.unitPriceEuro)} l’unité
                           </p>
                         </div>
                         <button
@@ -145,12 +144,12 @@ export function CartDrawer() {
                           onClick={() => removeLine(line.id)}
                           className="text-xs font-extrabold uppercase tracking-wide text-primary-dark hover:underline"
                         >
-                          Remove
+                          Retirer
                         </button>
                       </div>
                       <div className="mt-3 flex items-center justify-between">
                         <label className="text-xs font-extrabold text-muted">
-                          Qty
+                          Qté
                           <input
                             type="number"
                             min={1}
@@ -171,8 +170,8 @@ export function CartDrawer() {
                       </div>
                       {!resolveStripeCheckoutParams(line) && (
                         <p className="mt-2 text-xs font-bold text-amber-800">
-                          Remove this line — it uses an old cart format. Add the
-                          item again from the product page.
+                          Retirez cette ligne — ancien format de panier.
+                          Rajoutez l’article depuis la fiche produit.
                         </p>
                       )}
                     </li>
@@ -184,15 +183,15 @@ export function CartDrawer() {
             <div className="border-t border-pink-100 bg-white/90 p-5 backdrop-blur-sm">
               <div className="space-y-1 text-sm font-extrabold">
                 <div className="flex items-center justify-between">
-                  <span>Subtotal</span>
+                  <span>Sous-total</span>
                   <span>{formatEuro(subtotalEur)}</span>
                 </div>
                 <div className="flex items-center justify-between text-muted">
-                  <span>Delivery</span>
+                  <span>Livraison</span>
                   <span>
                     {freeDelivery ? (
                       <span className="font-extrabold text-emerald-600">
-                        Free
+                        Offerte
                       </span>
                     ) : (
                       formatEuro(singleProductOffer.deliveryEuro)
@@ -200,16 +199,15 @@ export function CartDrawer() {
                   </span>
                 </div>
                 <div className="flex items-center justify-between border-t border-pink-100 pt-2 text-base text-foreground">
-                  <span>Estimated total</span>
+                  <span>Total estimé</span>
                   <span>{formatEuro(estimatedTotalEur)}</span>
                 </div>
               </div>
               {items.length > 0 && (
                 <p className="mt-2 text-xs font-semibold text-muted">
-                  Subtotals of about {FREE_DELIVERY_THRESHOLD_USD} USD or more
-                  qualify for free delivery (see top banner). Your subtotal is
-                  about ${subtotalEurToUsdApprox(subtotalEur).toFixed(2)} USD
-                  equivalent.
+                  À partir de {FREE_DELIVERY_THRESHOLD_EUR} € de sous-total, la
+                  livraison est offerte (voir la bannière en haut). Votre
+                  sous-total : {formatEuro(subtotalEur)}.
                 </p>
               )}
               {checkoutError && (
@@ -223,11 +221,12 @@ export function CartDrawer() {
                 onClick={startCheckout}
                 className="mt-4 w-full rounded-2xl bg-accent py-3.5 text-sm font-extrabold text-white shadow-lg shadow-accent/25 transition enabled:hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-40"
               >
-                {checkoutLoading ? "Redirecting…" : "Checkout"}
+                {checkoutLoading ? "Redirection…" : "Payer"}
               </button>
               <p className="mt-2 text-xs font-semibold text-muted">
-                One Stripe checkout per visit for the first line. Change qty
-                above, or remove lines to pick another item.
+                Un paiement Stripe par visite pour la première ligne. Modifiez
+                la quantité ci-dessus ou retirez des lignes pour changer
+                d’article.
               </p>
             </div>
           </motion.aside>

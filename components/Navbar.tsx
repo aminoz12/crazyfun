@@ -29,10 +29,10 @@ export function Navbar() {
 
         <nav className="hidden items-center gap-6 text-sm font-semibold text-muted md:flex">
           <Link href="/products" className="transition-colors hover:text-accent">
-            Product
+            Produit
           </Link>
           <a href="/products#offer" className="transition-colors hover:text-accent">
-            Buy
+            Acheter
           </a>
           <a href="/#faq" className="transition-colors hover:text-accent">
             FAQ
@@ -44,15 +44,15 @@ export function Navbar() {
             href="/products#offer"
             className="hidden rounded-xl bg-accent px-4 py-2 text-sm font-bold text-white shadow-md shadow-accent/25 transition-transform hover:scale-[1.02] active:scale-[0.98] sm:inline-flex"
           >
-            Buy now
+            Acheter
           </a>
           <button
             type="button"
             onClick={toggleCart}
             className="relative rounded-xl border border-pink-200 bg-white px-3 py-2 text-sm font-bold text-foreground shadow-sm transition hover:border-accent/40 hover:shadow-md"
-            aria-label="Open cart"
+            aria-label="Ouvrir le panier"
           >
-            Cart
+            Panier
             {count > 0 && (
               <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-primary-dark px-1 text-[10px] font-extrabold text-white">
                 {count > 9 ? "9+" : count}

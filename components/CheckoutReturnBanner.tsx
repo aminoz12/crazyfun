@@ -17,7 +17,12 @@ function formatPaidTotal(cents: number | null, currency: string | null) {
   if (cents == null) return null;
   const amount = cents / 100;
   const cur = (currency ?? "eur").toLowerCase();
-  if (cur === "eur") return `${amount.toFixed(2)} €`;
+  if (cur === "eur") {
+    return new Intl.NumberFormat("fr-FR", {
+      style: "currency",
+      currency: "EUR",
+    }).format(amount);
+  }
   try {
     return new Intl.NumberFormat("fr-FR", {
       style: "currency",
@@ -57,8 +62,8 @@ export function CheckoutReturnBanner() {
 
     if (checkout === "cancel") {
       setState("cancel");
-      setMessage("Checkout canceled");
-      setDetail("You can change size or quantity and try again.");
+      setMessage("Paiement annulé");
+      setDetail("Vous pouvez modifier la taille ou la quantité et réessayer.");
       return;
     }
 
@@ -69,9 +74,9 @@ export function CheckoutReturnBanner() {
 
     if (!sessionId) {
       setState("pending");
-      setMessage("Return from checkout");
+      setMessage("Retour depuis le paiement");
       setDetail(
-        "We couldn’t read your session id. Check your email for Stripe’s receipt, or open the order link from your inbox.",
+        "Impossible de lire l’identifiant de session. Vérifiez votre e-mail pour le reçu Stripe ou le lien de commande.",
       );
       return;
     }
@@ -85,23 +90,23 @@ export function CheckoutReturnBanner() {
       .then(async (res) => {
         const data = (await res.json()) as SessionPayload;
         if (!res.ok) {
-          throw new Error(data.error || "Could not verify payment");
+          throw new Error(data.error || "Impossible de vérifier le paiement");
         }
         if (cancelled) return;
 
         if (data.payment_status === "paid") {
           setState("success");
-          setMessage("Payment successful");
+          setMessage("Paiement réussi");
           const total = formatPaidTotal(data.amount_total, data.currency);
           setDetail(
             [
-              total ? `Total paid: ${total}` : null,
+              total ? `Total payé : ${total}` : null,
               data.customer_email
-                ? `Confirmation sent to ${data.customer_email}`
+                ? `Confirmation envoyée à ${data.customer_email}`
                 : null,
             ]
               .filter(Boolean)
-              .join(" · ") || "Thank you for your order.",
+              .join(" · ") || "Merci pour votre commande.",
           );
           clearCart();
           return;
@@ -109,20 +114,28 @@ export function CheckoutReturnBanner() {
 
         if (data.payment_status === "unpaid" || data.status === "open") {
           setState("pending");
-          setMessage("Payment not completed");
-          setDetail("This session is still open or unpaid. You can return to checkout from Stripe if needed.");
+          setMessage("Paiement non finalisé");
+          setDetail(
+            "Cette session est encore ouverte ou impayée. Vous pouvez reprendre le paiement sur Stripe si besoin.",
+          );
           return;
         }
 
         setState("error");
-        setMessage("Payment status unclear");
-        setDetail(`Status: ${data.payment_status ?? data.status ?? "unknown"}`);
+        setMessage("Statut de paiement incertain");
+        setDetail(
+          `Statut : ${data.payment_status ?? data.status ?? "inconnu"}`,
+        );
       })
       .catch((e: unknown) => {
         if (cancelled) return;
         setState("error");
-        setMessage("Could not verify payment");
-        setDetail(e instanceof Error ? e.message : "Try again or check your Stripe Dashboard.");
+        setMessage("Impossible de vérifier le paiement");
+        setDetail(
+          e instanceof Error
+            ? e.message
+            : "Réessayez ou consultez votre tableau de bord Stripe.",
+        );
       });
 
     return () => {
@@ -153,7 +166,7 @@ export function CheckoutReturnBanner() {
       >
         <div>
           <p className="font-[family-name:var(--font-fredoka)] text-lg font-bold">
-            {state === "loading" ? "Verifying payment…" : message}
+            {state === "loading" ? "Vérification du paiement…" : message}
           </p>
           {detail && state !== "loading" && (
             <p className="mt-1 text-sm font-semibold opacity-90">{detail}</p>
@@ -165,7 +178,7 @@ export function CheckoutReturnBanner() {
             onClick={dismiss}
             className="mt-3 shrink-0 rounded-xl border border-current/20 bg-white/80 px-4 py-2 text-sm font-extrabold transition hover:bg-white sm:mt-0"
           >
-            Continue
+            Continuer
           </button>
         )}
       </div>

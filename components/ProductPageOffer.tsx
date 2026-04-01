@@ -4,7 +4,10 @@ import Image from "next/image";
 import { useMemo, useState } from "react";
 import { redirectToStripeCheckout } from "@/lib/checkout-client";
 import type { ProductSizeOption } from "@/lib/data";
-import { qualifiesForFreeDeliverySubtotalEur } from "@/lib/delivery";
+import {
+  FREE_DELIVERY_THRESHOLD_EUR,
+  qualifiesForFreeDeliverySubtotalEur,
+} from "@/lib/delivery";
 import { useCartStore } from "@/lib/store/use-cart-store";
 
 export type ProductPageOfferData = {
@@ -24,8 +27,11 @@ type ProductPageOfferProps = {
   offer: ProductPageOfferData;
 };
 
-function moneyEuro(n: number) {
-  return `${n.toFixed(2)} €`;
+function formatEuro(n: number) {
+  return new Intl.NumberFormat("fr-FR", {
+    style: "currency",
+    currency: "EUR",
+  }).format(n);
 }
 
 /** Fixed order: hero is always big1; row below is big2 + big3 (not `images[0]`, so data order can’t flip them). */
@@ -78,7 +84,9 @@ export function ProductPageOffer({ id, className = "", offer }: ProductPageOffer
     try {
       await redirectToStripeCheckout(selected.id, quantity);
     } catch (e) {
-      setCheckoutError(e instanceof Error ? e.message : "Something went wrong");
+      setCheckoutError(
+        e instanceof Error ? e.message : "Une erreur s’est produite",
+      );
       setCheckoutLoading(false);
     }
   }
@@ -91,7 +99,7 @@ export function ProductPageOffer({ id, className = "", offer }: ProductPageOffer
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-pink-100 bg-pink-50 shadow-lg">
               <Image
                 src={primaryImage}
-                alt={`${offer.name} — main`}
+                alt={`${offer.name} — principal`}
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
@@ -128,7 +136,7 @@ export function ProductPageOffer({ id, className = "", offer }: ProductPageOffer
           </p>
 
           <h3 className="mt-6 text-xs font-extrabold uppercase tracking-wider text-foreground">
-            Details
+            Détails
           </h3>
           <ul className="mt-2 space-y-2">
             {offer.details.map((line) => (
@@ -140,7 +148,7 @@ export function ProductPageOffer({ id, className = "", offer }: ProductPageOffer
           </ul>
 
           <h3 className="mt-6 text-xs font-extrabold uppercase tracking-wider text-foreground">
-            Specs
+            Caractéristiques
           </h3>
           <ul className="mt-2 space-y-2">
             {offer.specs.map((row) => (
@@ -156,7 +164,7 @@ export function ProductPageOffer({ id, className = "", offer }: ProductPageOffer
 
           <div className="mt-6">
             <p className="text-xs font-extrabold uppercase tracking-wider text-foreground">
-              Size
+              Taille
             </p>
             <div className="mt-2 flex flex-wrap gap-2">
               {offer.options.map((opt) => (
@@ -170,7 +178,7 @@ export function ProductPageOffer({ id, className = "", offer }: ProductPageOffer
                       : "border-pink-200 bg-white text-foreground hover:border-accent/40"
                   }`}
                 >
-                  {opt.label} — {moneyEuro(opt.priceEuro)}
+                  {opt.label} — {formatEuro(opt.priceEuro)}
                 </button>
               ))}
             </div>
@@ -178,14 +186,14 @@ export function ProductPageOffer({ id, className = "", offer }: ProductPageOffer
 
           <div className="mt-6">
             <p className="text-xs font-extrabold uppercase tracking-wider text-foreground">
-              Quantity
+              Quantité
             </p>
             <div className="mt-2 flex max-w-xs items-center gap-2">
               <button
                 type="button"
                 onClick={() => bumpQty(-1)}
                 className="flex h-11 w-11 items-center justify-center rounded-xl border border-pink-200 bg-white text-lg font-bold text-foreground hover:bg-pink-50"
-                aria-label="Decrease quantity"
+                aria-label="Diminuer la quantité"
               >
                 −
               </button>
@@ -205,7 +213,7 @@ export function ProductPageOffer({ id, className = "", offer }: ProductPageOffer
                 type="button"
                 onClick={() => bumpQty(1)}
                 className="flex h-11 w-11 items-center justify-center rounded-xl border border-pink-200 bg-white text-lg font-bold text-foreground hover:bg-pink-50"
-                aria-label="Increase quantity"
+                aria-label="Augmenter la quantité"
               >
                 +
               </button>
@@ -216,18 +224,19 @@ export function ProductPageOffer({ id, className = "", offer }: ProductPageOffer
             <p className="text-sm font-semibold text-muted">
               {deliveryFree ? (
                 <span className="text-emerald-700">
-                  This order qualifies for free delivery.
+                  Cette commande bénéficie de la livraison offerte.
                 </span>
               ) : (
                 <>
-                  Delivery {moneyEuro(offer.deliveryEuro)} — free when your
-                  subtotal reaches the equivalent of $50 USD (see banner above).
+                  Livraison {formatEuro(offer.deliveryEuro)} — offerte dès{" "}
+                  {FREE_DELIVERY_THRESHOLD_EUR} € de sous-total (voir la
+                  bannière ci-dessus).
                 </>
               )}
               {" "}
-              Estimated total:{" "}
+              Total estimé :{" "}
               <span className="font-extrabold text-foreground">
-                {moneyEuro(subtotalEur + deliveryLineEur)}
+                {formatEuro(subtotalEur + deliveryLineEur)}
               </span>
             </p>
             {checkoutError && (
@@ -241,7 +250,7 @@ export function ProductPageOffer({ id, className = "", offer }: ProductPageOffer
                 onClick={addToCart}
                 className="inline-flex w-full min-h-[3.25rem] items-center justify-center rounded-2xl border-2 border-pink-200 bg-white px-8 py-3.5 text-center text-base font-extrabold text-foreground shadow-sm transition hover:border-accent/40 enabled:active:scale-[0.99] sm:w-auto sm:min-w-[14rem]"
               >
-                Add to cart
+                Ajouter au panier
               </button>
               <button
                 type="button"
@@ -249,7 +258,7 @@ export function ProductPageOffer({ id, className = "", offer }: ProductPageOffer
                 disabled={checkoutLoading}
                 className="inline-flex w-full min-h-[3.25rem] items-center justify-center rounded-2xl bg-accent px-8 py-3.5 text-center text-base font-extrabold text-white shadow-lg shadow-accent/30 transition hover:opacity-95 enabled:active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:min-w-[14rem]"
               >
-                {checkoutLoading ? "Redirecting…" : "Buy now"}
+                {checkoutLoading ? "Redirection…" : "Acheter"}
               </button>
             </div>
           </div>

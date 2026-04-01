@@ -37,15 +37,16 @@ export function UrgencyBar() {
     <div className="border-b border-pink-200/80 bg-gradient-to-r from-primary/40 via-white to-accent-bright/30 px-4 py-2 text-center text-xs font-semibold text-foreground sm:text-sm">
       <span className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
         <span className="rounded-full bg-white/80 px-2 py-0.5 shadow-sm">
-          Flash window ends in{" "}
+          Fin de l’offre flash dans{" "}
           <span className="tabular-nums text-accent">
             {mounted ? `${pad(h)}:${pad(m)}:${pad(s)}` : "––:––:––"}
           </span>
         </span>
         <span className="text-muted">·</span>
         <span>
-          Only <strong className="text-primary-dark">{product.stockRemaining}</strong>{" "}
-          left at this drop price
+          Plus que{" "}
+          <strong className="text-primary-dark">{product.stockRemaining}</strong>{" "}
+          à ce prix drop
         </span>
       </span>
     </div>

@@ -20,7 +20,7 @@ export function StickyMobileCTA() {
           href="/products#offer"
           className="flex-1 rounded-2xl bg-accent py-3.5 text-center text-sm font-extrabold text-white shadow-md shadow-accent/30"
         >
-          Buy now
+          Acheter
         </a>
         <a
           href="/#faq"

@@ -66,7 +66,7 @@ export function BuzzEverywhere({ videos }: BuzzEverywhereProps) {
             id="buzz-heading"
             className="relative z-[1] px-4 text-center font-[family-name:var(--font-buzz)] text-2xl font-black uppercase leading-tight tracking-wide text-white sm:text-4xl md:text-5xl"
           >
-            The buzz is everywhere!
+            Le buzz est partout !
           </h2>
 
           <div

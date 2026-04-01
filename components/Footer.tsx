@@ -9,8 +9,8 @@ export function Footer() {
             SquishyBun Dumplings
           </p>
           <p className="mt-2 max-w-sm text-sm font-semibold text-white/75">
-            Frontend-only demo store. Replace Stripe links and copy before you
-            launch.
+            Boutique de démo côté client uniquement. Remplacez les liens Stripe
+            et les textes avant mise en ligne.
           </p>
         </div>
         <div className="flex flex-col gap-4 text-sm font-bold">
@@ -39,16 +39,16 @@ export function Footer() {
         </div>
         <div className="flex flex-col gap-2 text-xs font-semibold text-white/65">
           <a href="#" className="hover:text-white">
-            Terms
+            CGU
           </a>
           <a href="#" className="hover:text-white">
-            Privacy
+            Confidentialité
           </a>
         </div>
       </div>
       <div className="border-t border-white/10 py-4 text-center text-xs font-semibold text-white/50">
-        © {new Date().getFullYear()} SquishyBun Dumplings. All rights
-        reserved.
+        © {new Date().getFullYear()} SquishyBun Dumplings. Tous droits
+        réservés.
       </div>
     </footer>
   );

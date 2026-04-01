@@ -6,9 +6,9 @@ import { singleProductOffer } from "@/lib/data";
 import { useCartStore } from "@/lib/store/use-cart-store";
 
 function formatMoney(n: number) {
-  return new Intl.NumberFormat("en-US", {
+  return new Intl.NumberFormat("fr-FR", {
     style: "currency",
-    currency: "USD",
+    currency: "EUR",
   }).format(n);
 }
 
@@ -43,7 +43,7 @@ export function ProductCard({ tier, index }: ProductCardProps) {
         </span>
       )}
       <h3 className="font-[family-name:var(--font-fredoka)] text-xl font-bold text-foreground">
-        {tier.count} dumpling{tier.count > 1 ? "s" : ""}
+        {tier.count} raviole{tier.count > 1 ? "s" : ""}
       </h3>
       <p className="text-sm font-semibold text-muted">{tier.label}</p>
       <div className="mt-4 flex items-baseline gap-2">
@@ -58,9 +58,9 @@ export function ProductCard({ tier, index }: ProductCardProps) {
       </div>
 
       <ul className="mt-4 flex-1 space-y-2 text-sm font-semibold text-foreground/90">
-        <li>✓ Mystery styles &amp; colors</li>
-        <li>✓ Slow-rise squish</li>
-        <li>✓ Gift-ready packaging</li>
+        <li>✓ Styles et couleurs mystère</li>
+        <li>✓ Squish lent (slow-rise)</li>
+        <li>✓ Emballage prêt à offrir</li>
       </ul>
 
       <div className="mt-6 flex flex-col gap-2">
@@ -76,13 +76,13 @@ export function ProductCard({ tier, index }: ProductCardProps) {
           }
           className="w-full rounded-2xl bg-foreground py-3.5 text-center text-sm font-extrabold text-white shadow-lg transition hover:opacity-95 active:scale-[0.99]"
         >
-          Add to cart
+          Ajouter au panier
         </button>
         <a
           href="/products#offer"
           className="w-full rounded-2xl border-2 border-pink-200 py-3 text-center text-sm font-extrabold text-foreground transition hover:border-accent/50"
         >
-          Buy now
+          Acheter
         </a>
       </div>
     </motion.article>

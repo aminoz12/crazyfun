@@ -31,9 +31,9 @@ export function Hero() {
             transition={{ duration: 0.4 }}
             className="mb-3 inline-flex items-center gap-2 rounded-full border border-pink-200 bg-white/90 px-3 py-1 text-xs font-bold uppercase tracking-wide text-primary-dark shadow-sm"
           >
-            Over 10,000 sold
+            Plus de 10 000 vendus
             <span className="h-1 w-1 rounded-full bg-accent" />
-            TikTok famous
+            Viral sur TikTok
           </motion.p>
 
           <motion.h1
@@ -42,7 +42,7 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.05 }}
             className="font-[family-name:var(--font-fredoka)] text-4xl font-bold uppercase leading-[1.08] tracking-wide text-foreground sm:text-5xl lg:text-6xl"
           >
-            You won’t know which dumpling you get{" "}
+            Vous ne saurez pas quelle raviole vous recevrez{" "}
             <span className="inline-block" aria-hidden>
               😱
             </span>
@@ -54,8 +54,8 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.12 }}
             className="mt-4 max-w-xl text-base font-medium text-muted sm:text-lg"
           >
-            Slow-rise, pocket-sized chaos — each one’s a blind drop. Squeeze
-            the stress away and see which dumpling picks you.
+            Squishy, format poche, pur chaos — chaque pièce est une surprise.
+            Évacuez le stress et laissez la raviole vous choisir.
           </motion.p>
 
           <motion.div
@@ -68,13 +68,13 @@ export function Hero() {
               href="/products#offer"
               className="inline-flex items-center justify-center rounded-2xl bg-accent px-7 py-3.5 text-base font-extrabold text-white shadow-lg shadow-accent/30 transition-transform hover:scale-[1.03] active:scale-[0.98]"
             >
-              Buy now
+              Acheter
             </a>
             <a
               href="#buzz"
               className="inline-flex items-center justify-center rounded-2xl border-2 border-pink-200 bg-white px-6 py-3.5 text-base font-bold text-foreground shadow-sm transition hover:border-accent/50"
             >
-              See the vibe
+              Voir le buzz
             </a>
           </motion.div>
 
@@ -93,7 +93,8 @@ export function Hero() {
               ))}
             </div>
             <p className="max-w-xs font-semibold text-foreground/80">
-              Join thousands of unboxings — free shipping vibes on select drops.
+              Rejoignez des milliers de déballages — livraison offerte sur
+              certains seuils.
             </p>
           </motion.div>
         </div>
@@ -107,7 +108,7 @@ export function Hero() {
           <div className="relative aspect-square overflow-hidden rounded-[2rem] border border-pink-200/80 bg-white shadow-2xl shadow-pink-300/40">
             <Image
               src={HERO_IMAGE}
-              alt="SquishyBun Dumplings — hero product shot"
+              alt="SquishyBun Dumplings — visuel principal"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 50vw"
@@ -129,7 +130,7 @@ export function Hero() {
                 ease: "easeInOut",
               }}
             >
-              Blind drop
+              Boîte mystère
             </motion.div>
           )}
         </motion.div>

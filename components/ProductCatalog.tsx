@@ -7,9 +7,9 @@ import { singleProductOffer } from "@/lib/data";
 import { useCartStore } from "@/lib/store/use-cart-store";
 
 function formatMoney(n: number) {
-  return new Intl.NumberFormat("en-US", {
+  return new Intl.NumberFormat("fr-FR", {
     style: "currency",
-    currency: "USD",
+    currency: "EUR",
   }).format(n);
 }
 
@@ -23,8 +23,8 @@ type ProductCatalogProps = {
 
 export function ProductCatalog({
   products,
-  title = "Products",
-  subtitle = "Choose a product to view full details.",
+  title = "Produits",
+  subtitle = "Choisissez un produit pour voir tous les détails.",
   className = "",
   id,
 }: ProductCatalogProps) {
@@ -54,7 +54,7 @@ export function ProductCatalog({
     <section id={id} className={className}>
       <div className="text-center">
         <p className="text-sm font-extrabold uppercase tracking-widest text-accent">
-          Products
+          Produits
         </p>
         <h2 className="mt-2 font-[family-name:var(--font-fredoka)] text-3xl font-bold text-foreground sm:text-4xl">
           {title}
@@ -112,7 +112,7 @@ export function ProductCatalog({
 
       <article className="mt-8 rounded-3xl border border-pink-100 bg-white p-5 shadow-xl shadow-pink-200/30 sm:p-7">
         <p className="text-xs font-extrabold uppercase tracking-widest text-accent">
-          Selected product
+          Produit sélectionné
         </p>
         <h3 className="mt-2 font-[family-name:var(--font-fredoka)] text-2xl font-bold text-foreground sm:text-3xl">
           {selected.name}
@@ -166,7 +166,7 @@ export function ProductCatalog({
         </p>
 
         <h4 className="mt-6 text-sm font-extrabold uppercase tracking-wider text-foreground">
-          Product details
+          Détails produit
         </h4>
         <ul className="mt-3 space-y-2">
           {selected.details.map((line) => (
@@ -178,24 +178,24 @@ export function ProductCatalog({
         </ul>
 
         <h4 className="mt-6 text-sm font-extrabold uppercase tracking-wider text-foreground">
-          Specs
+          Caractéristiques
         </h4>
         <dl className="mt-3 grid gap-2 rounded-2xl border border-pink-100 bg-pink-50/40 p-4 sm:grid-cols-2">
           <div>
-            <dt className="text-xs font-bold uppercase tracking-wide text-muted">Color</dt>
+            <dt className="text-xs font-bold uppercase tracking-wide text-muted">Couleur</dt>
             <dd className="text-sm font-extrabold text-foreground">{selected.specs.color}</dd>
           </div>
           <div>
-            <dt className="text-xs font-bold uppercase tracking-wide text-muted">Theme</dt>
+            <dt className="text-xs font-bold uppercase tracking-wide text-muted">Thème</dt>
             <dd className="text-sm font-extrabold text-foreground">{selected.specs.theme}</dd>
           </div>
           <div>
-            <dt className="text-xs font-bold uppercase tracking-wide text-muted">Brand</dt>
+            <dt className="text-xs font-bold uppercase tracking-wide text-muted">Marque</dt>
             <dd className="text-sm font-extrabold text-foreground">{selected.specs.brand}</dd>
           </div>
           <div>
             <dt className="text-xs font-bold uppercase tracking-wide text-muted">
-              Character
+              Personnage
             </dt>
             <dd className="text-sm font-extrabold text-foreground">
               {selected.specs.character}
@@ -210,7 +210,7 @@ export function ProductCatalog({
             </dd>
           </div>
           <div>
-            <dt className="text-xs font-bold uppercase tracking-wide text-muted">Weight</dt>
+            <dt className="text-xs font-bold uppercase tracking-wide text-muted">Poids</dt>
             <dd className="text-sm font-extrabold text-foreground">{selected.specs.weight}</dd>
           </div>
         </dl>
@@ -228,13 +228,13 @@ export function ProductCatalog({
             }
             className="w-full rounded-2xl bg-foreground py-3.5 text-center text-sm font-extrabold text-white shadow-lg transition hover:opacity-95 active:scale-[0.99]"
           >
-            Add to cart
+            Ajouter au panier
           </button>
           <a
             href="/products#offer"
             className="w-full rounded-2xl border-2 border-pink-200 py-3 text-center text-sm font-extrabold text-foreground transition hover:border-accent/50"
           >
-            Buy now
+            Acheter
           </a>
         </div>
       </article>

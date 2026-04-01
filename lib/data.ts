@@ -5,7 +5,7 @@
 
 export const product = {
   name: "SquishyBun Dumplings",
-  tagline: "Tiny dumplings. Huge dopamine.",
+  tagline: "Minuscules ravioles. Énorme dopamine.",
   /** Static urgency copy — swap for real inventory if you add backend later */
   stockRemaining: 47,
 } as const;
@@ -25,22 +25,22 @@ export type PricingTier = {
 export const pricingTiers: PricingTier[] = [
   {
     id: "single",
-    label: "Starter",
+    label: "Découverte",
     count: 1,
     price: 9.99,
   },
   {
     id: "triple",
-    label: "Fan favorite",
+    label: "Coup de cœur",
     count: 3,
     price: 24.99,
     compareAt: 29.97,
-    badge: "Best seller",
+    badge: "Best-seller",
     highlight: true,
   },
   {
     id: "five",
-    label: "Squad pack",
+    label: "Pack équipe",
     count: 5,
     price: 39.99,
     compareAt: 49.95,
@@ -57,63 +57,63 @@ export type ShowcaseSlide = {
 export const showcaseSlides: ShowcaseSlide[] = [
   {
     src: "/image2.jpg",
-    alt: "SquishyBun Dumplings product photo, stress relief",
-    caption: "Stress relief you can squeeze between meetings",
+    alt: "SquishyBun Dumplings, photo produit, anti-stress",
+    caption: "Un anti-stress à presser entre deux réunions",
   },
   {
     src: "/image1.png",
-    alt: "SquishyBun Dumplings product photo, desk collectible",
-    caption: "Cute desk collectible that sparks joy",
+    alt: "SquishyBun Dumplings, photo produit, bureau",
+    caption: "Une touche kawaii sur le bureau qui fait plaisir",
   },
   {
     src: "/image3.jpg",
-    alt: "SquishyBun Dumplings product photo, mystery unboxing",
-    caption: "Mystery surprise — unbox the dopamine",
+    alt: "SquishyBun Dumplings, photo produit, déballage mystère",
+    caption: "Surprise mystère — découvrez la dopamine au déballage",
   },
 ];
 
 export const benefits = [
-  "Stress relief you can squeeze between meetings",
-  "Cute desk collectible that sparks joy",
-  "Mystery surprise — unbox the dopamine",
+  "Un anti-stress à presser entre deux réunions",
+  "Une touche kawaii sur le bureau qui fait plaisir",
+  "Surprise mystère — découvrez la dopamine au déballage",
 ] as const;
 
 export const reviews = [
   {
     name: "Mia R.",
-    location: "Austin, TX",
+    location: "Paris, FR",
     rating: 5,
-    text: "I screamed. It’s so dumb and so perfect. Already ordered the 3-pack.",
+    text: "J’ai hurlé. C’est débile et parfait. J’ai déjà recommandé le lot de 3.",
   },
   {
     name: "Jordan K.",
-    location: "Toronto, ON",
+    location: "Lyon, FR",
     rating: 5,
-    text: "Feels expensive, ships fast, and the squish is *chef’s kiss*.",
+    text: "Ça fait quali, livraison rapide, et le squish est au top.",
   },
   {
     name: "Sam L.",
-    location: "London, UK",
+    location: "Bruxelles, BE",
     rating: 5,
-    text: "Bought as a joke. It’s now my emotional support dumpling.",
+    text: "Acheté pour rigoler. C’est devenu ma raviole émotionnelle.",
   },
 ] as const;
 
 export const howItWorks = [
   {
     step: 1,
-    title: "Order your pack",
-    body: "Pick 1, 3, or 5 — each bundle is a blind drop.",
+    title: "Commandez votre lot",
+    body: "Choisissez 1, 3 ou 5 — chaque pack est une surprise.",
   },
   {
     step: 2,
-    title: "We pack the mystery",
-    body: "We curate squishy dumplings with love (and bubble wrap).",
+    title: "On prépare le mystère",
+    body: "On sélectionne vos squishy avec soin (et du papier bulle).",
   },
   {
     step: 3,
-    title: "You unbox the surprise",
-    body: "Film it, flex it, squeeze it — tag us on TikTok.",
+    title: "Vous déballez la surprise",
+    body: "Filmez, montrez, pressez — taguez-nous sur TikTok.",
   },
 ] as const;
 
@@ -121,20 +121,20 @@ export type FaqItem = { q: string; a: string };
 
 export const faqItems: FaqItem[] = [
   {
-    q: "What is a SquishyBun dumpling?",
-    a: "A palm-sized, slow-rise squishy toy inspired by dumplings. You won’t know the exact style or color until it arrives — that’s the fun.",
+    q: "Qu’est-ce qu’une raviole SquishyBun ?",
+    a: "Un petit jouet squishy lent à reprendre sa forme, inspiré des ravioles. Vous ne connaîtrez ni le style ni la couleur exacts avant l’arrivée — c’est le fun.",
   },
   {
-    q: "How long does shipping take?",
-    a: "Most U.S. orders ship within 2 business days and arrive in 3–7 days. You’ll get tracking by email.",
+    q: "Combien de temps pour la livraison ?",
+    a: "La plupart des commandes partent sous 2 jours ouvrés ; comptez en général 3 à 7 jours pour la réception. Vous recevrez le suivi par e-mail.",
   },
   {
-    q: "What’s your refund policy?",
-    a: "If something arrives damaged or not as described, email us within 14 days and we’ll make it right.",
+    q: "Quelle est votre politique de remboursement ?",
+    a: "Si un article arrive abîmé ou non conforme, écrivez-nous sous 14 jours et on trouvera une solution.",
   },
   {
-    q: "Is this food?",
-    a: "No — it’s a toy. Do not eat the squishy. (We can’t believe we had to say that.)",
+    q: "Est-ce que c’est comestible ?",
+    a: "Non — c’est un jouet. Ne pas manger le squishy. (On n’aurait pas cru devoir le préciser.)",
   },
 ];
 
@@ -153,29 +153,29 @@ export type ProductSizeOption = {
 
 export const singleProductOffer = {
   id: "squishybun-mystery-dumpling",
-  name: "Crazy Fun Rainbow Squishy Bun Mystery Dumpling",
+  name: "Crazy Fun Rainbow — raviole mystère squishy bun",
   deliveryEuro: 9,
   images: ["/big1.png", "/big2.png", "/big3.png"],
   description:
-    "One product, two sizes. Pick your size and checkout instantly. Delivery is €9 on smaller orders; free when your basket reaches the equivalent of $50 USD (see site banner).",
+    "Un produit, deux tailles. Choisissez la vôtre et payez en un clic. Livraison 9 € sur les petits paniers ; offerte dès 50 € de sous-total (voir la bannière du site).",
   details: [
-    "This is a Mystery Squishy Bao Bun Sensory Fidget Toy.",
-    "The product is from the brand Crazy Fun.",
-    "It functions as a sensory fidget toy.",
-    "This toy is suitable for ages 3 and up.",
-    "Each package contains 1 set.",
-    "There is a possibility to find a Super Rare Shimmering Starlight Dumpling.",
+    "Jouet sensoriel squishy type bao mystère.",
+    "Marque Crazy Fun.",
+    "Fonction fidget / anti-stress.",
+    "Dès 3 ans.",
+    "1 set par emballage.",
+    "Chance de trouver une raviole super rare « Starlight » irisée.",
   ],
   specs: [
-    { label: "Color", value: "Mystery" },
-    { label: "Theme", value: "Mystery Dumpling" },
-    { label: "Brand", value: "RMS" },
-    { label: "Character", value: "Dumpling" },
+    { label: "Couleur", value: "Mystère" },
+    { label: "Thème", value: "Raviole mystère" },
+    { label: "Marque", value: "RMS" },
+    { label: "Personnage", value: "Raviole" },
     {
       label: "Dimensions",
-      value: "Varies by size (17 cm or 24 cm) — see size option.",
+      value: "Selon la taille (17 cm ou 24 cm) — voir l’option.",
     },
-    { label: "Weight", value: "Approx. 0.7–1.9 kg depending on size." },
+    { label: "Poids", value: "Environ 0,7 à 1,9 kg selon la taille." },
   ],
   options: [
     {
@@ -215,58 +215,58 @@ export type ProductDetail = {
 export const productDetails: ProductDetail[] = [
   {
     id: "mini-crazy-fun-rainbow",
-    name: "Mini Crazy Fun Rainbow Squishy Bun Mystery Dumpling 17CM",
-    size: "17CM",
+    name: "Mini Crazy Fun Rainbow — raviole mystère squishy bun 17 cm",
+    size: "17 cm",
     price: 9.99,
     description:
-      "Discover endless fun with the Mystery Squishy Bao Bun Sensory fidget toy, a delightful addition to the Crazy Fun collection. Each set provides an exciting unboxing experience, where you might uncover a super rare shimmering starlight dumpling. This engaging sensory toy is perfect for children aged 3 and up, offering a satisfying squishy texture and a touch of mystery. Enjoy the tactile play and the thrill of finding out which unique dumpling you receive in your set.",
+      "Découvrez le jouet sensoriel bao mystère Crazy Fun : un déballage excitant où vous pourriez tomber sur une raviole super rare irisée. Texture squishy satisfaisante, dès 3 ans. Quelle raviole allez-vous recevoir ?",
     details: [
-      "This is a Mystery Squishy Bao Bun Sensory Fidget Toy.",
-      "The product is from the brand Crazy Fun.",
-      "It functions as a sensory fidget toy.",
-      "This toy is suitable for ages 3 and up.",
-      "Each package contains 1 set.",
-      "There is a possibility to find a Super Rare Shimmering Starlight Dumpling.",
+      "Jouet sensoriel squishy type bao mystère.",
+      "Marque Crazy Fun.",
+      "Fonction fidget / anti-stress.",
+      "Dès 3 ans.",
+      "1 set par emballage.",
+      "Chance de trouver une raviole super rare « Starlight » irisée.",
     ],
     specs: {
-      color: "Mystery",
-      theme: "Mystery Dumpling",
+      color: "Mystère",
+      theme: "Raviole mystère",
       brand: "RMS",
-      character: "Dumpling",
-      dimensions: "6.69 x 6.69 x 5.02 Inches (17 x 17 x 12.75 cm)",
-      weight: "1.60 lb (0.73 kg)",
+      character: "Raviole",
+      dimensions: "17 × 17 × 12,75 cm",
+      weight: "Environ 0,73 kg",
     },
     images: ["/big1.png", "/big2.png", "/big3.png"],
   },
   {
     id: "big-crazy-fun-rainbow",
-    name: "i Crazy Fun Rainbow Squishy Bun Mystery Dumpling 28CM",
-    size: "28CM",
+    name: "Grand Crazy Fun Rainbow — raviole mystère squishy bun 28 cm",
+    size: "28 cm",
     price: 24.99,
     compareAt: 29.97,
     description:
-      "Discover endless fun with the Mystery Squishy Bao Bun Sensory fidget toy, a delightful addition to the Crazy Fun collection. Each set provides an exciting unboxing experience, where you might uncover a super rare shimmering starlight dumpling. This engaging sensory toy is perfect for children aged 3 and up, offering a satisfying squishy texture and a touch of mystery. Enjoy the tactile play and the thrill of finding out which unique dumpling you receive in your set.",
+      "Découvrez le jouet sensoriel bao mystère Crazy Fun : un déballage excitant où vous pourriez tomber sur une raviole super rare irisée. Texture squishy satisfaisante, dès 3 ans. Quelle raviole allez-vous recevoir ?",
     details: [
-      "This is a Mystery Squishy Bao Bun Sensory Fidget Toy.",
-      "The product is from the brand Crazy Fun.",
-      "It functions as a sensory fidget toy.",
-      "This toy is suitable for ages 3 and up.",
-      "Each package contains 1 set.",
-      "There is a possibility to find a Super Rare Shimmering Starlight Dumpling.",
+      "Jouet sensoriel squishy type bao mystère.",
+      "Marque Crazy Fun.",
+      "Fonction fidget / anti-stress.",
+      "Dès 3 ans.",
+      "1 set par emballage.",
+      "Chance de trouver une raviole super rare « Starlight » irisée.",
     ],
     specs: {
-      color: "Mystery",
-      theme: "Mystery Dumpling",
+      color: "Mystère",
+      theme: "Raviole mystère",
       brand: "RMS",
-      character: "Dumpling",
-      dimensions: "11.02 x 11.02 x 8.27 Inches (28 x 28 x 21 cm)",
-      weight: "4.20 lb (1.90 kg)",
+      character: "Raviole",
+      dimensions: "28 × 28 × 21 cm",
+      weight: "Environ 1,90 kg",
     },
     images: ["/big1.png", "/big2.png", "/big3.png"],
   },
 ];
 
-/** “The buzz is everywhere” — only these `/public` MP4s (no posters or extra assets). */
+/** « Le buzz partout » — uniquement ces MP4 dans `/public` (pas d’affiches ni assets en plus). */
 export const buzzReelVideos = [
   "/dumpling-1-trimmed.mp4",
   "/dumpling-2-trimmed.mp4",

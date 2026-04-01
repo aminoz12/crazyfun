@@ -14,10 +14,10 @@ export async function redirectToStripeCheckout(
   });
   const data = (await res.json()) as { url?: string; error?: string };
   if (!res.ok) {
-    throw new Error(data.error || "Payment could not start");
+    throw new Error(data.error || "Le paiement n’a pas pu démarrer");
   }
   if (!data.url) {
-    throw new Error("No checkout URL returned");
+    throw new Error("Aucune URL de paiement renvoyée");
   }
   window.location.href = data.url;
 }

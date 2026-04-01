@@ -10,7 +10,7 @@ import { useCartStore } from "@/lib/store/use-cart-store";
 type SingleProductOfferProps = {
   id?: string;
   className?: string;
-  /** Index: small card + Buy now only. Product page: full layout. */
+  /** Variante : carte compacte + Acheter uniquement, ou page produit complète. */
   variant?: "full" | "compact";
   name: string;
   description: string;
@@ -19,8 +19,11 @@ type SingleProductOfferProps = {
   options: readonly ProductSizeOption[];
 };
 
-function moneyEuro(n: number) {
-  return `${n.toFixed(2)} euro`;
+function formatEuro(n: number) {
+  return new Intl.NumberFormat("fr-FR", {
+    style: "currency",
+    currency: "EUR",
+  }).format(n);
 }
 
 export function SingleProductOffer({
@@ -63,7 +66,7 @@ export function SingleProductOffer({
   const pickerPanel = showPicker && (
     <div className="mt-5 rounded-2xl border border-pink-100 bg-pink-50/40 p-4">
       <p className="text-sm font-extrabold uppercase tracking-wider text-foreground">
-        Choose size
+        Choisir la taille
       </p>
       <div className="mt-3 grid gap-2">
         {options.map((opt) => (
@@ -76,7 +79,7 @@ export function SingleProductOffer({
             }`}
           >
             <span>
-              {opt.label} - {moneyEuro(opt.priceEuro)}
+              {opt.label} — {formatEuro(opt.priceEuro)}
             </span>
             <input
               className="h-4 w-4 accent-violet-600"
@@ -91,16 +94,16 @@ export function SingleProductOffer({
 
       <div className="mt-4 space-y-1 text-sm font-semibold text-foreground">
         <p>
-          Product: <strong>{moneyEuro(selected.priceEuro)}</strong>
+          Produit : <strong>{formatEuro(selected.priceEuro)}</strong>
         </p>
         <p>
-          Delivery:{" "}
+          Livraison :{" "}
           <strong>
-            {deliveryFree ? "FREE" : moneyEuro(deliveryEuro)}
+            {deliveryFree ? "Offerte" : formatEuro(deliveryEuro)}
           </strong>
         </p>
         <p className="text-base">
-          Total: <strong>{moneyEuro(total)}</strong>
+          Total : <strong>{formatEuro(total)}</strong>
         </p>
       </div>
 
@@ -116,7 +119,7 @@ export function SingleProductOffer({
           }
           className="w-full rounded-2xl bg-foreground py-3.5 text-center text-sm font-extrabold text-white shadow-lg transition hover:opacity-95 active:scale-[0.99]"
         >
-          Add to cart
+          Ajouter au panier
         </button>
         <button
           type="button"
@@ -124,7 +127,7 @@ export function SingleProductOffer({
           onClick={buyNow}
           className="w-full rounded-2xl border-2 border-pink-200 py-3 text-center text-sm font-extrabold text-foreground transition hover:border-accent/50 disabled:opacity-60"
         >
-          {checkoutLoading ? "Redirecting…" : "Buy now"}
+          {checkoutLoading ? "Redirection…" : "Acheter"}
         </button>
       </div>
     </div>
@@ -152,7 +155,7 @@ export function SingleProductOffer({
                   onClick={() => setShowPicker((v) => !v)}
                   className="w-full rounded-2xl bg-accent px-8 py-5 text-center text-lg font-extrabold text-white shadow-xl shadow-accent/40 transition hover:scale-[1.02] hover:opacity-95 active:scale-[0.98] md:min-h-[4.5rem] md:text-xl"
                 >
-                  Buy now
+                  Acheter
                 </button>
               </div>
             </div>
@@ -167,7 +170,7 @@ export function SingleProductOffer({
     <section id={id} className={className}>
       <div className="rounded-3xl border border-pink-100 bg-white p-5 shadow-xl shadow-pink-200/30 sm:p-7">
         <p className="text-sm font-extrabold uppercase tracking-widest text-accent">
-          Product
+          Produit
         </p>
         <h2 className="mt-2 font-[family-name:var(--font-fredoka)] text-3xl font-bold text-foreground sm:text-4xl">
           {name}
@@ -219,7 +222,7 @@ export function SingleProductOffer({
             onClick={() => setShowPicker((v) => !v)}
             className="w-full rounded-2xl bg-accent py-3.5 text-center text-sm font-extrabold text-white shadow-lg shadow-accent/25 transition hover:opacity-95"
           >
-            Buy now
+            Acheter
           </button>
         </div>
 

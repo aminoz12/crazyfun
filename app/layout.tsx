@@ -5,30 +5,31 @@ import "./globals.css";
 
 const fredoka = Fredoka({
   variable: "--font-fredoka",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "600", "700"],
 });
 
 const nunito = Nunito({
   variable: "--font-nunito",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   weight: ["400", "500", "600", "700", "800"],
 });
 
 /** Heavy sans for the orange “Buzz” reel section (reference layout). */
 const montserrat = Montserrat({
   variable: "--font-buzz",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
   weight: ["800", "900"],
 });
 
 export const metadata: Metadata = {
-  title: "SquishyBun Dumplings | Crazy Fun Drop",
+  title: "SquishyBun Dumplings | Crazy Fun",
   description:
-    "Blind-box squishy dumplings — cute, viral, and oddly therapeutic. Guest checkout with Stripe.",
+    "Ravioles squishy en boîte mystère — mignonnes, virales et apaisantes. Paiement invité avec Stripe.",
   openGraph: {
     title: "SquishyBun Dumplings",
-    description: "You won’t know which dumpling you get. That’s the point.",
+    description:
+      "Vous ne saurez pas quelle raviole vous recevrez. C’est tout le jeu.",
   },
 };
 
@@ -39,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="fr"
       className={`${fredoka.variable} ${nunito.variable} ${montserrat.variable} h-full antialiased`}
     >
       <body className="relative min-h-full flex flex-col font-sans">
