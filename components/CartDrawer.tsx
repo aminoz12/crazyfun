@@ -19,8 +19,7 @@ function formatEuro(n: number) {
 }
 
 /**
- * Slide-over cart. Checkout always uses POST /api/checkout (Stripe Checkout
- * Session) so amount and currency match the cart line — no static Payment Links.
+ * Panier latéral. Paiement via POST /api/checkout (Stripe Checkout Session, EUR).
  */
 export function CartDrawer() {
   const reduce = useReducedMotion();
@@ -120,8 +119,8 @@ export function CartDrawer() {
             <div className="flex-1 overflow-y-auto px-5 py-4">
               {items.length === 0 ? (
                 <p className="text-sm font-semibold text-muted">
-                  Votre panier est vide — choisissez une taille sur la fiche
-                  produit et ajoutez-la ici, ou appuyez sur Acheter.
+                  Panier vide — choisissez une taille sur la fiche produit et
+                  ajoutez-la ici, ou appuyez sur Acheter.
                 </p>
               ) : (
                 <ul className="space-y-4">
@@ -170,8 +169,8 @@ export function CartDrawer() {
                       </div>
                       {!resolveStripeCheckoutParams(line) && (
                         <p className="mt-2 text-xs font-bold text-amber-800">
-                          Retirez cette ligne — ancien format de panier.
-                          Rajoutez l’article depuis la fiche produit.
+                          Retirez cette ligne — ancien format. Rajoutez l’article
+                          depuis la fiche produit.
                         </p>
                       )}
                     </li>
@@ -205,9 +204,9 @@ export function CartDrawer() {
               </div>
               {items.length > 0 && (
                 <p className="mt-2 text-xs font-semibold text-muted">
-                  À partir de {FREE_DELIVERY_THRESHOLD_EUR} € de sous-total, la
-                  livraison est offerte (voir la bannière en haut). Votre
-                  sous-total : {formatEuro(subtotalEur)}.
+                  Livraison offerte dès {formatEuro(FREE_DELIVERY_THRESHOLD_EUR)}{" "}
+                  de sous-total (voir la bannière). Votre sous-total :{" "}
+                  {formatEuro(subtotalEur)}.
                 </p>
               )}
               {checkoutError && (
@@ -225,8 +224,7 @@ export function CartDrawer() {
               </button>
               <p className="mt-2 text-xs font-semibold text-muted">
                 Un paiement Stripe par visite pour la première ligne. Modifiez
-                la quantité ci-dessus ou retirez des lignes pour changer
-                d’article.
+                la quantité ou retirez des lignes pour changer d’article.
               </p>
             </div>
           </motion.aside>

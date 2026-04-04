@@ -178,7 +178,7 @@ export function ProductCatalog({
         </ul>
 
         <h4 className="mt-6 text-sm font-extrabold uppercase tracking-wider text-foreground">
-          Caractéristiques
+          Specs
         </h4>
         <dl className="mt-3 grid gap-2 rounded-2xl border border-pink-100 bg-pink-50/40 p-4 sm:grid-cols-2">
           <div>

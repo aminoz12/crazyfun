@@ -1,5 +1,6 @@
 /**
- * Free delivery when the cart subtotal (EUR, same currency as Stripe) reaches this amount.
+ * Livraison offerte lorsque le sous-total panier / commande (hors livraison)
+ * atteint ce montant en EUR — aligné avec Stripe (devise EUR).
  */
 export const FREE_DELIVERY_THRESHOLD_EUR = 50;
 

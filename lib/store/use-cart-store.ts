@@ -6,7 +6,7 @@ export type CartLine = {
   /** `size-17` / `size-24` for Checkout API, or legacy tier id `single`/`triple`/`five` */
   id: string;
   name: string;
-  /** Unit price in EUR (matches single product offer) */
+  /** Prix unitaire en EUR (aligné sur l’offre produit) */
   unitPriceEuro: number;
   quantity: number;
 };

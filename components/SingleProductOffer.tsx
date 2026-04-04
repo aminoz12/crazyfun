@@ -10,7 +10,7 @@ import { useCartStore } from "@/lib/store/use-cart-store";
 type SingleProductOfferProps = {
   id?: string;
   className?: string;
-  /** Variante : carte compacte + Acheter uniquement, ou page produit complète. */
+  /** Index: small card + Buy now only. Product page: full layout. */
   variant?: "full" | "compact";
   name: string;
   description: string;
@@ -23,6 +23,8 @@ function formatEuro(n: number) {
   return new Intl.NumberFormat("fr-FR", {
     style: "currency",
     currency: "EUR",
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
   }).format(n);
 }
 

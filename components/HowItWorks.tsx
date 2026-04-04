@@ -12,7 +12,7 @@ export function HowItWorks() {
             Comment ça marche
           </p>
           <h2 className="mt-2 font-[family-name:var(--font-fredoka)] text-3xl font-bold text-foreground sm:text-4xl">
-            Trois étapes. Un rebondissement.
+            Trois étapes. Une surprise.
           </h2>
         </div>
 

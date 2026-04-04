@@ -1,14 +1,17 @@
 /**
- * Central product + marketing copy.
- * Checkout uses Stripe Checkout Sessions (POST /api/checkout), not Payment Links.
+ * Contenu produit et marketing (français, Europe).
+ * Paiement : Stripe Checkout Sessions (POST /api/checkout).
  */
 
 export const product = {
   name: "SquishyBun Dumplings",
-  tagline: "Minuscules ravioles. Énorme dopamine.",
-  /** Static urgency copy — swap for real inventory if you add backend later */
+  tagline: "Minuscules ravioles, maxi plaisir.",
+  /** Copie urgence — remplacer par du stock réel si backend plus tard */
   stockRemaining: 47,
 } as const;
+
+/** Favicon, navbar, footer — placer `icon.png` dans `/public`. */
+export const siteIconPath = "/icon.png" as const;
 
 export type PricingTierId = "single" | "triple" | "five";
 
@@ -53,51 +56,108 @@ export type ShowcaseSlide = {
   caption: string;
 };
 
-/** Product showcase carousel — files in `/public` */
 export const showcaseSlides: ShowcaseSlide[] = [
   {
     src: "/image2.jpg",
-    alt: "SquishyBun Dumplings, photo produit, anti-stress",
-    caption: "Un anti-stress à presser entre deux réunions",
+    alt: "SquishyBun Dumplings, jouet anti-stress squishy",
+    caption: "Anti-stress à presser entre deux réunions",
   },
   {
     src: "/image1.png",
-    alt: "SquishyBun Dumplings, photo produit, bureau",
-    caption: "Une touche kawaii sur le bureau qui fait plaisir",
+    alt: "SquishyBun Dumplings, déco de bureau kawaii",
+    caption: "Une touche mignonne sur le bureau",
   },
   {
     src: "/image3.jpg",
-    alt: "SquishyBun Dumplings, photo produit, déballage mystère",
-    caption: "Surprise mystère — découvrez la dopamine au déballage",
+    alt: "SquishyBun Dumplings, déballage mystère",
+    caption: "Surprise au déballage — le plaisir du mystère",
   },
 ];
 
 export const benefits = [
-  "Un anti-stress à presser entre deux réunions",
-  "Une touche kawaii sur le bureau qui fait plaisir",
-  "Surprise mystère — découvrez la dopamine au déballage",
+  "Anti-stress à presser entre deux réunions",
+  "Une touche mignonne sur le bureau",
+  "Surprise au déballage — le plaisir du mystère",
 ] as const;
 
 export const reviews = [
   {
-    name: "Mia R.",
-    location: "Paris, FR",
+    name: "Léa M.",
+    location: "Paris, France",
     rating: 5,
-    text: "J’ai hurlé. C’est débile et parfait. J’ai déjà recommandé le lot de 3.",
+    text: "J’ai crié tellement c’est mignon. Déjà recommandé le lot de 3.",
   },
   {
-    name: "Jordan K.",
-    location: "Lyon, FR",
+    name: "Thomas K.",
+    location: "Bruxelles, Belgique",
     rating: 5,
-    text: "Ça fait quali, livraison rapide, et le squish est au top.",
+    text: "Quali au toucher, envoi rapide, le squish est parfait.",
   },
   {
-    name: "Sam L.",
-    location: "Bruxelles, BE",
+    name: "Sofia R.",
+    location: "Lyon, France",
     rating: 5,
-    text: "Acheté pour rigoler. C’est devenu ma raviole émotionnelle.",
+    text: "Acheté pour rigoler, c’est devenu mon anti-stress du bureau.",
   },
 ] as const;
+
+/** Liste longue sur `/products` — style avis e-commerce. */
+export type ProductPageReview = {
+  rating: number;
+  title: string;
+  body?: string;
+  reviewPosted: string;
+  purchaseDate: string;
+  author: string;
+  image: string;
+};
+
+export const productPageReviews: ProductPageReview[] = [
+  {
+    rating: 5,
+    title: "Trop mignon, j’en ai recommandé",
+    body: "J’ai hurlé de joie. C’est débile et parfait à la fois — déjà commandé le pack de 3.",
+    reviewPosted: "2026-03-18",
+    purchaseDate: "2026-03-02",
+    author: "Léa M.",
+    image: "/rev1.png",
+  },
+  {
+    rating: 5,
+    title: "« Attends… QUOI ? » au déballage",
+    body: "Je pensais que ce serait gadget. Dès que je l’ai pressé, j’ai éclaté de rire — hyper doux, slow-rise au top. Livraison rapide en France. Je le recommande.",
+    reviewPosted: "2026-03-12",
+    purchaseDate: "2026-02-28",
+    author: "Thomas K.",
+    image: "/rev2.png",
+  },
+  {
+    rating: 5,
+    title: "Pour ma fille… finalement on adore toutes les deux",
+    body: "Commandé pour l’anniversaire de ma fille, elle a adoré. Le côté mystère, c’est le fun. Honnêtement je le pique sur son bureau pour le presser — validé par les parents.",
+    reviewPosted: "2026-02-26",
+    purchaseDate: "2026-02-10",
+    author: "Sofia R.",
+    image: "/rev3.png",
+  },
+  {
+    rating: 5,
+    title: "La nouvelle star de sa chambre — moi aussi impressionnée",
+    body: "Mystery dumpling pour ma fille : déballage pur bonheur. Slow-rise nickel, elle l’emmène partout. Je ne pensais pas accrocher autant. Je rachèterais.",
+    reviewPosted: "2026-03-05",
+    purchaseDate: "2026-02-19",
+    author: "Elena V.",
+    image: "/rev4.png",
+  },
+  {
+    rating: 5,
+    title: "Comme sur les vidéos",
+    reviewPosted: "2026-01-30",
+    purchaseDate: "2026-01-14",
+    author: "Chris P.",
+    image: "/rev5.png",
+  },
+];
 
 export const howItWorks = [
   {
@@ -108,12 +168,12 @@ export const howItWorks = [
   {
     step: 2,
     title: "On prépare le mystère",
-    body: "On sélectionne vos squishy avec soin (et du papier bulle).",
+    body: "On emballe vos squishy avec soin (et du papier bulle).",
   },
   {
     step: 3,
-    title: "Vous déballez la surprise",
-    body: "Filmez, montrez, pressez — taguez-nous sur TikTok.",
+    title: "Vous déballez",
+    body: "Filmez, partagez, pressez — taguez-nous sur TikTok.",
   },
 ] as const;
 
@@ -122,19 +182,19 @@ export type FaqItem = { q: string; a: string };
 export const faqItems: FaqItem[] = [
   {
     q: "Qu’est-ce qu’une raviole SquishyBun ?",
-    a: "Un petit jouet squishy lent à reprendre sa forme, inspiré des ravioles. Vous ne connaîtrez ni le style ni la couleur exacts avant l’arrivée — c’est le fun.",
+    a: "Un petit jouet squishy slow-rise en forme de bao. Couleur et style exacts : surprise jusqu’à l’arrivée du colis.",
   },
   {
-    q: "Combien de temps pour la livraison ?",
-    a: "La plupart des commandes partent sous 2 jours ouvrés ; comptez en général 3 à 7 jours pour la réception. Vous recevrez le suivi par e-mail.",
+    q: "Quels sont les délais de livraison en Europe ?",
+    a: "Expédition sous environ 2 jours ouvrés pour la plupart des commandes. Livraison généralement en 3 à 7 jours selon le pays (France, Belgique, UE). Suivi envoyé par e-mail.",
   },
   {
-    q: "Quelle est votre politique de remboursement ?",
-    a: "Si un article arrive abîmé ou non conforme, écrivez-nous sous 14 jours et on trouvera une solution.",
+    q: "Politique de remboursement ?",
+    a: "Article abîmé ou non conforme : contactez-nous sous 14 jours, on trouve une solution.",
   },
   {
-    q: "Est-ce que c’est comestible ?",
-    a: "Non — c’est un jouet. Ne pas manger le squishy. (On n’aurait pas cru devoir le préciser.)",
+    q: "C’est comestible ?",
+    a: "Non — c’est un jouet. Ne pas manger le squishy.",
   },
 ];
 
@@ -154,17 +214,17 @@ export type ProductSizeOption = {
 export const singleProductOffer = {
   id: "squishybun-mystery-dumpling",
   name: "Crazy Fun Rainbow — raviole mystère squishy bun",
-  deliveryEuro: 9,
-  images: ["/big1.png", "/big2.png", "/big3.png"],
   description:
-    "Un produit, deux tailles. Choisissez la vôtre et payez en un clic. Livraison 9 € sur les petits paniers ; offerte dès 50 € de sous-total (voir la bannière du site).",
+    "Jouet sensoriel bao mystère, texture slow-rise, fun type boîte surprise — chance de dénicher la raviole ultra rare « Starlight » irisée. Dès 3 ans. Prix en euros (EUR), TVA incluse le cas échéant.",
+  deliveryEuro: 9,
+  images: ["/big1.png", "/vid2.mp4", "/big3.png"],
   details: [
     "Jouet sensoriel squishy type bao mystère.",
     "Marque Crazy Fun.",
-    "Fonction fidget / anti-stress.",
+    "Fidget / anti-stress.",
     "Dès 3 ans.",
     "1 set par emballage.",
-    "Chance de trouver une raviole super rare « Starlight » irisée.",
+    "Possibilité de raviole super rare « Starlight » irisée.",
   ],
   specs: [
     { label: "Couleur", value: "Mystère" },
@@ -219,14 +279,14 @@ export const productDetails: ProductDetail[] = [
     size: "17 cm",
     price: 9.99,
     description:
-      "Découvrez le jouet sensoriel bao mystère Crazy Fun : un déballage excitant où vous pourriez tomber sur une raviole super rare irisée. Texture squishy satisfaisante, dès 3 ans. Quelle raviole allez-vous recevoir ?",
+      "Découvrez le jouet sensoriel bao mystère Crazy Fun : déballage excitant, texture squishy satisfaisante, dès 3 ans. Peut-être la raviole rare irisée ? Quelle variante allez-vous recevoir ?",
     details: [
       "Jouet sensoriel squishy type bao mystère.",
       "Marque Crazy Fun.",
-      "Fonction fidget / anti-stress.",
+      "Fidget / anti-stress.",
       "Dès 3 ans.",
       "1 set par emballage.",
-      "Chance de trouver une raviole super rare « Starlight » irisée.",
+      "Possibilité de raviole super rare « Starlight » irisée.",
     ],
     specs: {
       color: "Mystère",
@@ -236,7 +296,7 @@ export const productDetails: ProductDetail[] = [
       dimensions: "17 × 17 × 12,75 cm",
       weight: "Environ 0,73 kg",
     },
-    images: ["/big1.png", "/big2.png", "/big3.png"],
+    images: ["/big1.png", "/vid2.mp4", "/big3.png"],
   },
   {
     id: "big-crazy-fun-rainbow",
@@ -245,14 +305,14 @@ export const productDetails: ProductDetail[] = [
     price: 24.99,
     compareAt: 29.97,
     description:
-      "Découvrez le jouet sensoriel bao mystère Crazy Fun : un déballage excitant où vous pourriez tomber sur une raviole super rare irisée. Texture squishy satisfaisante, dès 3 ans. Quelle raviole allez-vous recevoir ?",
+      "Découvrez le jouet sensoriel bao mystère Crazy Fun : déballage excitant, texture squishy satisfaisante, dès 3 ans. Peut-être la raviole rare irisée ? Quelle variante allez-vous recevoir ?",
     details: [
       "Jouet sensoriel squishy type bao mystère.",
       "Marque Crazy Fun.",
-      "Fonction fidget / anti-stress.",
+      "Fidget / anti-stress.",
       "Dès 3 ans.",
       "1 set par emballage.",
-      "Chance de trouver une raviole super rare « Starlight » irisée.",
+      "Possibilité de raviole super rare « Starlight » irisée.",
     ],
     specs: {
       color: "Mystère",
@@ -262,11 +322,10 @@ export const productDetails: ProductDetail[] = [
       dimensions: "28 × 28 × 21 cm",
       weight: "Environ 1,90 kg",
     },
-    images: ["/big1.png", "/big2.png", "/big3.png"],
+    images: ["/big1.png", "/vid2.mp4", "/big3.png"],
   },
 ];
 
-/** « Le buzz partout » — uniquement ces MP4 dans `/public` (pas d’affiches ni assets en plus). */
 export const buzzReelVideos = [
   "/dumpling-1-trimmed.mp4",
   "/dumpling-2-trimmed.mp4",

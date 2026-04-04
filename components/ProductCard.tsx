@@ -58,9 +58,9 @@ export function ProductCard({ tier, index }: ProductCardProps) {
       </div>
 
       <ul className="mt-4 flex-1 space-y-2 text-sm font-semibold text-foreground/90">
-        <li>✓ Styles et couleurs mystère</li>
-        <li>✓ Squish lent (slow-rise)</li>
-        <li>✓ Emballage prêt à offrir</li>
+        <li>✓ Mystery styles &amp; colors</li>
+        <li>✓ Slow-rise squish</li>
+        <li>✓ Gift-ready packaging</li>
       </ul>
 
       <div className="mt-6 flex flex-col gap-2">

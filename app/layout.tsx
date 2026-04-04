@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fredoka, Montserrat, Nunito } from "next/font/google";
 import { PromoMarquee } from "@/components/PromoMarquee";
+import { rootMetadataExtras } from "@/lib/seo";
 import "./globals.css";
 
 const fredoka = Fredoka({
@@ -23,14 +24,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "SquishyBun Dumplings | Crazy Fun",
-  description:
-    "Ravioles squishy en boîte mystère — mignonnes, virales et apaisantes. Paiement invité avec Stripe.",
-  openGraph: {
-    title: "SquishyBun Dumplings",
-    description:
-      "Vous ne saurez pas quelle raviole vous recevrez. C’est tout le jeu.",
-  },
+  ...rootMetadataExtras(),
 };
 
 export default function RootLayout({

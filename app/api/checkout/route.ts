@@ -5,9 +5,8 @@ import { qualifiesForFreeDeliverySubtotalEur } from "@/lib/delivery";
 import { getStripe } from "@/lib/stripe-server";
 
 /**
- * Creates a Stripe Checkout Session (payment) for the single product:
- * line 1 = unit price × quantity; optional line 2 = delivery (waived when
- * subtotal meets FREE_DELIVERY_THRESHOLD_EUR via lib/delivery).
+ * Crée une session Stripe Checkout : ligne 1 = prix × qté ; ligne 2 = livraison
+ * (offerte si sous-total ≥ FREE_DELIVERY_THRESHOLD_EUR).
  */
 export async function POST(request: Request) {
   const secret = process.env.STRIPE_SECRET_KEY?.trim();

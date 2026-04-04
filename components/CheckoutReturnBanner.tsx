@@ -17,12 +17,6 @@ function formatPaidTotal(cents: number | null, currency: string | null) {
   if (cents == null) return null;
   const amount = cents / 100;
   const cur = (currency ?? "eur").toLowerCase();
-  if (cur === "eur") {
-    return new Intl.NumberFormat("fr-FR", {
-      style: "currency",
-      currency: "EUR",
-    }).format(amount);
-  }
   try {
     return new Intl.NumberFormat("fr-FR", {
       style: "currency",
@@ -166,7 +160,7 @@ export function CheckoutReturnBanner() {
       >
         <div>
           <p className="font-[family-name:var(--font-fredoka)] text-lg font-bold">
-            {state === "loading" ? "Vérification du paiement…" : message}
+            {state === "loading" ? "Verifying payment…" : message}
           </p>
           {detail && state !== "loading" && (
             <p className="mt-1 text-sm font-semibold opacity-90">{detail}</p>

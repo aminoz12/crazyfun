@@ -18,7 +18,7 @@ export function Pricing() {
           Choisissez votre lot. Plongez dans le mystère.
         </h2>
         <p className="mx-auto mt-3 max-w-2xl text-sm font-semibold text-muted sm:text-base">
-          Chaque option est payée en toute sécurité avec Stripe — sans compte.
+          Paiement sécurisé avec Stripe en euros — sans compte obligatoire.
         </p>
       </div>
 
