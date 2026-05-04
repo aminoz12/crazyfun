@@ -1,9 +1,9 @@
-import { FREE_DELIVERY_THRESHOLD_EUR } from "@/lib/delivery";
+import { FREE_DELIVERY_THRESHOLD_USD } from "@/lib/delivery";
 
-const MESSAGE = `LIVRAISON OFFERTE À PARTIR DE ${FREE_DELIVERY_THRESHOLD_EUR} €`;
+const MESSAGE = `LIVRAISON GRATUITE POUR COMMANDES SUPÉRIEURES À ${FREE_DELIVERY_THRESHOLD_USD}€`;
 
 /**
- * Bandeau promo défilant en haut du site (au-dessus de la nav).
+ * Full-width scrolling promo strip at the very top of the site (above the nav).
  */
 export function PromoMarquee() {
   const chunk = (

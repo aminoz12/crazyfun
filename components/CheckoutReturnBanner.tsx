@@ -16,7 +16,13 @@ type SessionPayload = {
 function formatPaidTotal(cents: number | null, currency: string | null) {
   if (cents == null) return null;
   const amount = cents / 100;
-  const cur = (currency ?? "eur").toLowerCase();
+  const cur = (currency ?? "usd").toLowerCase();
+  if (cur === "usd") {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+    }).format(amount);
+  }
   try {
     return new Intl.NumberFormat("fr-FR", {
       style: "currency",
@@ -56,8 +62,8 @@ export function CheckoutReturnBanner() {
 
     if (checkout === "cancel") {
       setState("cancel");
-      setMessage("Paiement annulé");
-      setDetail("Vous pouvez modifier la taille ou la quantité et réessayer.");
+      setMessage("Checkout canceled");
+      setDetail("You can change size or quantity and try again.");
       return;
     }
 
@@ -68,9 +74,9 @@ export function CheckoutReturnBanner() {
 
     if (!sessionId) {
       setState("pending");
-      setMessage("Retour depuis le paiement");
+      setMessage("Return from checkout");
       setDetail(
-        "Impossible de lire l’identifiant de session. Vérifiez votre e-mail pour le reçu Stripe ou le lien de commande.",
+        "We couldn’t read your session id. Check your email for Stripe’s receipt, or open the order link from your inbox.",
       );
       return;
     }
@@ -84,23 +90,23 @@ export function CheckoutReturnBanner() {
       .then(async (res) => {
         const data = (await res.json()) as SessionPayload;
         if (!res.ok) {
-          throw new Error(data.error || "Impossible de vérifier le paiement");
+          throw new Error(data.error || "Could not verify payment");
         }
         if (cancelled) return;
 
         if (data.payment_status === "paid") {
           setState("success");
-          setMessage("Paiement réussi");
+          setMessage("Payment successful");
           const total = formatPaidTotal(data.amount_total, data.currency);
           setDetail(
             [
-              total ? `Total payé : ${total}` : null,
+              total ? `Total paid: ${total}` : null,
               data.customer_email
-                ? `Confirmation envoyée à ${data.customer_email}`
+                ? `Confirmation sent to ${data.customer_email}`
                 : null,
             ]
               .filter(Boolean)
-              .join(" · ") || "Merci pour votre commande.",
+              .join(" · ") || "Thank you for your order.",
           );
           clearCart();
           return;
@@ -108,28 +114,20 @@ export function CheckoutReturnBanner() {
 
         if (data.payment_status === "unpaid" || data.status === "open") {
           setState("pending");
-          setMessage("Paiement non finalisé");
-          setDetail(
-            "Cette session est encore ouverte ou impayée. Vous pouvez reprendre le paiement sur Stripe si besoin.",
-          );
+          setMessage("Payment not completed");
+          setDetail("This session is still open or unpaid. You can return to checkout from Stripe if needed.");
           return;
         }
 
         setState("error");
-        setMessage("Statut de paiement incertain");
-        setDetail(
-          `Statut : ${data.payment_status ?? data.status ?? "inconnu"}`,
-        );
+        setMessage("Payment status unclear");
+        setDetail(`Status: ${data.payment_status ?? data.status ?? "unknown"}`);
       })
       .catch((e: unknown) => {
         if (cancelled) return;
         setState("error");
-        setMessage("Impossible de vérifier le paiement");
-        setDetail(
-          e instanceof Error
-            ? e.message
-            : "Réessayez ou consultez votre tableau de bord Stripe.",
-        );
+        setMessage("Could not verify payment");
+        setDetail(e instanceof Error ? e.message : "Try again or check your Stripe Dashboard.");
       });
 
     return () => {
@@ -172,7 +170,7 @@ export function CheckoutReturnBanner() {
             onClick={dismiss}
             className="mt-3 shrink-0 rounded-xl border border-current/20 bg-white/80 px-4 py-2 text-sm font-extrabold transition hover:bg-white sm:mt-0"
           >
-            Continuer
+            Continue
           </button>
         )}
       </div>

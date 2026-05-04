@@ -10,6 +10,7 @@ import { blogPosts, getBlogPost } from "@/lib/blog-data";
 import {
   blogPostingJsonLd,
   getMetadataBase,
+  getSiteUrl,
   SITE_NAME,
 } from "@/lib/seo";
 
@@ -22,27 +23,27 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getBlogPost(slug);
-  if (!post) return { title: "Introuvable" };
+  if (!post) return { title: "Not found" };
 
-  const path = `/blog/${post.slug}`;
+  const base = getSiteUrl();
+  const canonicalUrl = `${base}/blog/${post.slug}`;
 
   return {
     title: post.title,
     description: post.description,
     keywords: post.keywords,
     alternates: {
-      canonical: path,
+      canonical: canonicalUrl,
       languages: {
-        "x-default": path,
-        fr: path,
-        "fr-FR": path,
-        "fr-BE": path,
+        "x-default": canonicalUrl,
+        "en-US": canonicalUrl,
+        "en-CA": canonicalUrl,
+        "en-GB": canonicalUrl,
       },
     },
     openGraph: {
       type: "article",
-      locale: "fr_FR",
-      url: path,
+      url: canonicalUrl,
       title: post.title,
       description: post.description,
       publishedTime: post.publishedAt,
@@ -56,6 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     twitter: {
       title: post.title,
       description: post.description,
+      images: [new URL("/herosqueeze.png", getMetadataBase()).toString()],
     },
   };
 }
@@ -86,7 +88,7 @@ export default async function BlogArticlePage({ params }: Props) {
               dateTime={post.publishedAt}
               className="text-xs font-bold uppercase tracking-wide text-primary-dark"
             >
-              {new Date(post.publishedAt).toLocaleDateString("fr-FR", {
+              {new Date(post.publishedAt).toLocaleDateString("en-GB", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -120,23 +122,23 @@ export default async function BlogArticlePage({ params }: Props) {
 
           <aside className="mt-12 rounded-2xl border border-[#ff8a12]/40 bg-gradient-to-br from-[#fff8f0] to-white p-6 shadow-sm">
             <p className="font-[family-name:var(--font-fredoka)] text-lg font-bold text-[#2d2384]">
-              Boutique SquishyBun Dumplings
+              Shop SquishyBun Dumplings
             </p>
             <p className="mt-2 text-sm leading-relaxed text-foreground/80">
-              Ravioles squishy mystère Crazy Fun — tailles, photos et paiement sécurisé en euros
-              pour la France, la Belgique et l’Europe.
+              Mystery Crazy Fun rainbow squishy buns — sizes, photos, and secure checkout for
+              shoppers in the United States, Canada, and the United Kingdom.
             </p>
             <Link
               href="/products#offer"
               className="mt-4 inline-flex rounded-xl bg-[#ff8a12] px-5 py-3 text-sm font-black uppercase tracking-wide text-white shadow-md shadow-orange-500/25 transition hover:brightness-105"
             >
-              Voir le produit
+              View product
             </Link>
           </aside>
 
           <p className="mt-10 text-center text-sm text-foreground/55">
             <Link href="/blog" className="font-bold text-primary-dark hover:underline">
-              ← Tous les articles
+              ← All articles
             </Link>
             <span className="mx-2">·</span>
             <span>{SITE_NAME}</span>

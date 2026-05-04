@@ -1,5 +1,5 @@
 /**
- * Articles /blog — SEO France & Europe (même slugs pour URLs stables).
+ * Editorial content for /blog — optimized for organic search in the US, Canada, and UK.
  */
 
 export type BlogSection = {
@@ -20,298 +20,302 @@ export const blogPosts: BlogPost[] = [
   {
     slug: "mystery-squishy-dumplings-guide",
     title:
-      "Qu’est-ce qu’une raviole squishy mystère ? Guide d’achat France & Europe",
+      "What Are Mystery Squishy Dumplings? A Buyer Guide for the USA, Canada & UK",
     description:
-      "Comprendre les jouets raviole squishy mystère, pour qui ils sont faits, et comment les boîtes surprise bao s’intègrent au jeu sensoriel — pour acheteurs en France, Belgique et Union européenne.",
+      "Learn what mystery squishy dumpling toys are, who they are for, and how blind-box bao squishies fit into sensory play — written for American, Canadian, and British shoppers.",
     publishedAt: "2026-03-08",
     keywords: [
-      "raviole squishy mystère",
-      "jouet squishy France",
-      "livraison Belgique jouet",
-      "squishy Europe",
+      "mystery squishy dumpling",
+      "squishy toy USA",
+      "Canada squishy delivery",
+      "UK squishy toy",
       "bao bun squishy",
     ],
     sections: [
       {
-        heading: "Petites ravioles, grande surprise",
+        heading: "Tiny dumplings, big surprise",
         paragraphs: [
-          "Les ravioles squishy mystère sont des fidgets slow-rise, format paume, en forme de bao. Vous choisissez un lot, mais la couleur ou la variante peut rester surprise jusqu’au déballage — comme les collectibles blind box, avec une texture agréable à presser.",
-          "La gamme Crazy Fun Rainbow Squishy Bun vise les 3 ans et plus. C’est un jouet, pas de la nourriture : l’aspect raviole est purement ludique.",
+          "Mystery squishy dumplings are palm-sized, slow-rise fidget toys shaped like bao buns. You choose a pack, but the exact colourway or face can stay a surprise until you unbox — similar to blind-box collectibles, but with a satisfying squeeze.",
+          "The Crazy Fun Rainbow Squishy Bun line is aimed at ages 3 and up. It is a toy, not food: the dumpling look is purely for fun and desk appeal.",
         ],
       },
       {
-        heading: "Pourquoi les familles en Europe s’y intéressent",
+        heading: "Why families in the US, Canada, and UK search for them",
         paragraphs: [
-          "En France, Belgique ou ailleurs dans l’UE, on cherche souvent des anti-stress compacts, photogéniques pour TikTok ou Instagram. Le format mystère ajoute un petit rituel : ouvrir, réagir, presser.",
-          "En comparant les vendeurs, vérifiez les dimensions (17 cm vs 24 cm), les zones de livraison et l’âge conseillé sur la fiche produit avant d’acheter.",
+          "Shoppers from California to Ontario and from Texas to London often look for compact stress toys that ship reliably and photograph well for TikTok or Instagram. Mystery formats add a light ritual: open, react, squeeze.",
+          "If you are comparing sellers, check available pack options (1 PCS to 8 PCS), delivery regions, and age guidance on the product page before you buy.",
         ],
       },
       {
-        heading: "Où acheter SquishyBun Dumplings",
+        heading: "Where to shop SquishyBun Dumplings",
         paragraphs: [
-          "Tailles, visuels et paiement sécurisé : tout est sur notre page produit.",
+          "Ready to choose a pack and check out? Our shop lists current pack bundles, imagery, and checkout options on the product page.",
         ],
       },
     ],
   },
   {
     slug: "shipping-us-canada-uk-squishy-toys",
-    title: "Livraison des squishy en France, Belgique et Union européenne",
+    title: "Shipping Squishy Toys to the USA, Canada & the United Kingdom",
     description:
-      "Du paiement à la réception : délais, suivi et attentes réalistes pour vos commandes de ravioles squishy en Europe.",
+      "A practical overview of how squishy dumpling orders typically move from checkout to your door in the United States, Canada, and the UK — timelines, tracking, and expectations.",
     publishedAt: "2026-03-10",
     keywords: [
-      "livraison jouet France",
-      "colis Belgique squishy",
-      "expédition Europe jouet",
-      "suivi colis",
+      "squishy toy shipping USA",
+      "Canada toy delivery",
+      "UK parcel squishy",
+      "international squishy order",
     ],
     sections: [
       {
-        heading: "Expédition en Europe",
+        heading: "North American delivery",
         paragraphs: [
-          "La plupart des commandes sont préparées sous environ deux jours ouvrés. Le délai de transport est souvent de 3 à 7 jours ouvrés selon le transporteur, la distance et les jours fériés — le suivi e-mail reste la référence.",
-          "Pour la Belgique ou d’autres pays UE, des frais ou formalités douanières peuvent s’appliquer selon les règles en vigueur ; en France métropolitaine, pas de frontière pour un envoi national.",
+          "Most US and Canada orders are packed within a couple of business days. Transit commonly falls in a 3–7 business day window depending on carrier volume, distance, and local holidays — always refer to your tracking email for the live estimate.",
+          "Canadian buyers may see customs or carrier fees on rare occasions depending on service and value thresholds; US domestic orders typically avoid cross-border steps.",
         ],
       },
       {
-        heading: "Dom Tom et zones particulières",
+        heading: "United Kingdom readers",
         paragraphs: [
-          "Vérifiez sur la boutique si votre adresse est desservie et comptez un délai supplémentaire par rapport à un envoi métropolitain.",
+          "If you are shopping from England, Scotland, Wales, or Northern Ireland, confirm on the storefront whether UK shipping is offered for your basket. When available, allow extra time versus domestic US routes, and watch for any VAT or import handling messages from the carrier.",
         ],
       },
       {
-        heading: "Après la commande",
+        heading: "After you order",
         paragraphs: [
-          "Conservez l’e-mail de confirmation, filmez un déballage si vous le souhaitez, et contactez le support en cas de dommage — délai courant de 14 jours pour les défauts évidents.",
+          "Keep your confirmation email, film a quick unboxing if you enjoy the format, and reach out to support if anything arrives damaged — most reputable toy shops publish a 14-day window for obvious defects.",
         ],
       },
     ],
   },
   {
     slug: "sensory-fidget-squishy-benefits",
-    title: "Squishy sensoriel et concentration : pourquoi une raviole fidget aide",
+    title: "Sensory Squishy Toys and Focus: Why a Dumpling Fidget Helps",
     description:
-      "Le slow-rise pour des pauses calmes et une stimulation légère — sans remplacer un avis médical — public France & Europe.",
+      "How slow-rise squishies support calm breaks and light stimulation for kids and adults — without replacing professional advice — with a Canada, USA, and UK audience in mind.",
     publishedAt: "2026-03-12",
     keywords: [
-      "jouet sensoriel fidget",
-      "squishy anti-stress",
-      "fidget bureau",
-      "pause concentration",
+      "sensory fidget toy",
+      "squishy stress relief",
+      "desk fidget UK",
+      "ADHD friendly fidget",
     ],
     sections: [
       {
-        heading: "Stimulation douce",
+        heading: "Gentle stimulation",
         paragraphs: [
-          "Les mousses slow-rise offrent une résistance prévisible : presser, relâcher, regarder remonter. Cette boucle peut ancrer l’attention pendant les appels, le télétravail ou les trajets.",
-          "Ce ne sont pas des dispositifs médicaux. Pour des besoins spécifiques, parlez à un professionnel — article à visée informative uniquement.",
+          "Slow-rise foam squishies give predictable resistance: squeeze, release, watch it rise. That loop can anchor attention during calls, homework, or commute downtime for people who like tactile feedback.",
+          "They are not medical devices. If you need support for regulation or sensory processing, speak with a qualified professional — this article is general product education only.",
         ],
       },
       {
-        heading: "Bureau et école",
+        heading: "Office and classroom culture",
         paragraphs: [
-          "En open space ou en classe, un squishy discret peut aider sans bruit de clic. La forme raviole reste reconnaissable et conviviale.",
+          "In US tech offices, Canadian co-working spaces, and UK hybrid teams, small desk toys have become normal. A dumpling shape stands out just enough to spark conversation without dominating your workspace.",
         ],
       },
     ],
   },
   {
     slug: "blind-box-mystery-unboxing-psychology",
-    title: "Boîte mystère : pourquoi déballer une raviole squishy fait du bien",
+    title: "Blind Box Mystery Toys: Why Unboxing a Dumpling Squishy Feels So Good",
     description:
-      "Anticipation, récompense variable et contenus courts — comment la gamme Crazy Fun s’inscrit dans la tendance des unboxing en Europe.",
+      "The psychology behind mystery packaging and collectible squishies — and how the Crazy Fun rainbow dumpling taps into anticipation for viewers in America, Canada, and Britain.",
     publishedAt: "2026-03-14",
     keywords: [
-      "blind box jouet",
-      "unboxing mystère",
-      "squishy collection",
+      "blind box toy",
+      "mystery unboxing",
+      "collectible squishy",
       "TikTok squishy",
     ],
     sections: [
       {
-        heading: "L’attente crée l’émotion",
+        heading: "Anticipation sells the story",
         paragraphs: [
-          "Ne pas savoir quelle variante vous attend rend l’ouverture du colis mémorable. D’où l’accent sur les tirages rares type « starlight ».",
+          "Variable rewards — not knowing which variant you will get — can make opening the parcel more memorable than buying an identical item off a peg. That is why mystery dumpling lines highlight rare pulls like a shimmering starlight style.",
         ],
       },
       {
-        heading: "Contenus qui fonctionnent",
+        heading: "Content that travels",
         paragraphs: [
-          "Les courtes vidéos aiment le crissement du papier, la révélation, le premier squish. Les ravioles se lisent bien à l’écran grâce aux couleurs et aux visages stylisés.",
+          "Short-form video platfoSquishy-Bun reward quick emotional beats: the crinkle, the reveal, the first squeeze. Dumpling squishies read well on camera because faces and pastel gradients pop under phone lighting.",
         ],
       },
     ],
   },
   {
     slug: "desk-toys-office-stress-relief",
-    title: "Anti-stress de bureau : squishy raviole en France & Europe",
+    title: "Desk Toys for Office Stress Relief in the US, Canada & UK",
     description:
-      "Choisir un compagnon de bureau discret — les squishy battent souvent les gadgets bruyants en open space.",
+      "Picking a low-noise desk companion for hybrid work — why squishy dumplings beat clicky gadgets for open offices from Vancouver to Manchester.",
     publishedAt: "2026-03-16",
     keywords: [
-      "anti-stress bureau",
-      "jouet bureau silencieux",
-      "télétravail France",
-      "accessoire bureau Europe",
+      "desk toy stress relief",
+      "office fidget quiet",
+      "UK desk accessory",
+      "Canada work from home",
     ],
     sections: [
       {
-        heading: "Silence plutôt que clic",
+        heading: "Quiet beats clicky",
         paragraphs: [
-          "Contrairement aux spinners métalliques ou stylos à clic, un squishy mou reste discret — pratique en open space ou en colocation.",
+          "Unlike metal spinners or click pens, a soft squishy is nearly silent — a plus for US open-plan offices, Canadian shared flats, and UK hot-desking setups where neighbours notice sound.",
         ],
       },
       {
-        heading: "Personnalité sur le bureau",
+        heading: "Personality on the desk",
         paragraphs: [
-          "La silhouette raviole est ludique sans être enfantine en finitions pastel ou arc-en-ciel. Ça détend l’ambiance des visioconférences.",
+          "A dumpling silhouette is playful without looking childish in pastel or rainbow finishes. It signals you do not take every meeting too seriously, which can soften remote-first culture.",
         ],
       },
     ],
   },
   {
     slug: "crazy-fun-rainbow-squishy-bun-sizes",
-    title: "Crazy Fun Rainbow Squishy Bun : tailles, poids et mystère",
+    title: "Crazy Fun Rainbow Squishy Bun: Pack Options, Pricing & Rare Dumpling Notes",
     description:
-      "17 cm ou 24 cm, poids indicatifs, et ce que « mystère » signifie quand vous commandez en euros depuis l’Europe.",
-    publishedAt: "2026-03-18",
+      "Honest notes on 1 PCS to 8 PCS pack options, pricing tiers, and what 'mystery' means when you order the Crazy Fun rainbow squishy bun in USD from the United States, Canada, or the UK.",
+    publishedAt: "2026-04-26",
     keywords: [
       "Crazy Fun squishy bun",
-      "squishy 17 cm 24 cm",
-      "raviole starlight",
-      "jouet RMS",
+      "squishy packs 1 PCS",
+      "squishy bundle 2 PCS 4 PCS",
+      "8 PCS squishy set",
+      "shimmering starlight dumpling",
+      "Squishy-Bun dumpling toy",
+      "squishy bulk order",
+      "mystery dumpling packs",
     ],
     sections: [
       {
-        heading: "Deux tailles utiles",
+        heading: "Pack options for every buyer",
         paragraphs: [
-          "La gamme propose environ 17 cm et 24 cm. Le grand modèle pèse souvent plus et offre un squish plus spectaculaire ; le petit se glisse dans un sac.",
-          "Les fiches produit indiquent les dimensions en centimètres pour les acheteurs européens.",
+          "The line is now offered in convenient packs: 1 PCS ($18), 2 PCS ($34), 4 PCS ($65), 6 PCS ($89), and 8 PCS ($109). Larger packs offer better value for collectors and gift-givers. Each dumpling is approximately 10 cm — perfect for desk display, travel, or sharing with friends.",
+          "Specs on the product page list current pack pricing so American, Canadian, and British buyers can choose the best value without confusion.",
         ],
       },
       {
-        heading: "Mystère et variantes rares",
+        heading: "Mystery and rare variants",
         paragraphs: [
-          "Chaque unité est une expérience type blind : couleurs ou expressions variables. La raviole « starlight » ultra rare peut apparaître — chase, pas une garantie.",
+          "Every pack is a blind-style experience: you might receive different colours or expressions in each dumpling. A super rare shimmering starlight dumpling may appear in some packs — it is a chase item, not a guarantee. The more you buy, the better your chances of finding one!",
         ],
       },
       {
-        heading: "Prix et photos à jour",
+        heading: "Buy with current photos and price",
         paragraphs: [
-          "Vérifiez toujours prix, livraison et visuels sur la page produit avant paiement.",
+          "Always confirm live pack pricing, delivery, and imagery on our product page before checkout. Packs are updated regularly based on stock availability.",
         ],
       },
     ],
   },
   {
     slug: "gift-ideas-mystery-dumpling-toys",
-    title: "Idées cadeaux : ravioles squishy mystère pour anniversaires & fêtes",
+    title: "Gift Ideas: Mystery Dumpling Squishies for Birthdays & Holidays",
     description:
-      "Quand offrir une raviole mystère — et quand prendre un lot — pour la France, la Belgique et l’Europe.",
+      "When a mystery squishy dumpling is the right present — and when to bundle packs — for gift givers in the USA, Canada, and UK.",
     publishedAt: "2026-03-20",
     keywords: [
-      "cadeau squishy",
-      "idée cadeau ado",
-      "petit cadeau secret santa",
-      "anniversaire enfant",
+      "squishy gift ideas",
+      "stocking filler UK",
+      "teen gift Canada",
+      "secret santa fidget",
     ],
     sections: [
       {
-        heading: "Qui va adorer",
+        heading: "Who lights up for a dumpling squishy",
         paragraphs: [
-          "Enfants fans de blind bags, ados qui filment des unboxings, adultes qui veulent un accessoire de bureau léger. Le mystère rend même une seule pièce « événement ».",
+          "Kids who love blind bags, teens who film unboxings, and adults who want a harmless desk prop all fit. The mystery element makes even a single unit feel like an event.",
         ],
       },
       {
-        heading: "Occasions en Europe",
+        heading: "Regional gifting moments",
         paragraphs: [
-          "Noël, anniversaires, rentrée, Secret Santa en entreprise : le squishy se glisse sous les sapins comme dans les sacs de fête, avec un budget souvent modeste.",
+          "US shoppers often anchor around winter holidays and back-to-school. Canadian buyers may pair squishies with winter indoor play. UK gifters frequently use them as Secret Santa or birthday add-ons under £20 equivalents.",
         ],
       },
     ],
   },
   {
     slug: "care-slow-rise-squishy-toys",
-    title: "Entretenir un squishy slow-rise (pour qu’il dure)",
+    title: "How to Care for Slow-Rise Squishy Toys (So They Last)",
     description:
-      "Nettoyage, stockage et habitudes — familles en France et en Europe.",
+      "Cleaning, storage, and habits that extend the life of foam squishies — for families in America, Canada, and the United Kingdom.",
     publishedAt: "2026-03-22",
     keywords: [
-      "nettoyer squishy",
-      "mousse slow-rise entretien",
-      "ranger jouet squishy",
+      "clean squishy toy",
+      "slow rise foam care",
+      "squishy storage",
     ],
     sections: [
       {
-        heading: "Sec et tempéré",
+        heading: "Keep them dry and cool",
         paragraphs: [
-          "Humidité et chaleur peuvent vieillir la mousse. Évitez radiateurs, fenêtres plein soleil et salles de bain — surtout par temps humide.",
+          "Humidity and heat can affect foam over months. Store away from radiators, sunny windowsills, and bathtubs — especially in damp UK winters or humid US summers.",
         ],
       },
       {
-        heading: "Nettoyage de surface",
+        heading: "Surface cleaning",
         paragraphs: [
-          "Tamponnez avec un chiffon légèrement humide ; pas de trempage. Évitez solvants agressifs sur peinture ou parfum éventuel.",
+          "Spot-clean with a barely damp cloth; avoid soaking. Harsh solvents can damage paint or scent layers if present.",
         ],
       },
     ],
   },
   {
     slug: "tiktok-squishy-trends-collector-tips",
-    title: "TikTok & squishy : astuces pour filmer et collectionner",
+    title: "TikTok Squishy Trends & Collector Tips for Dumpling Fans",
     description:
-      "Cadrage, lumière et bonnes pratiques — créateurs en France et en Europe.",
+      "How to film satisfying squish clips, tag responsibly, and build a small collection — with notes for creators in the US, Canada, and UK time zones.",
     publishedAt: "2026-03-24",
     keywords: [
-      "vidéo TikTok squishy",
-      "ASMR squishy",
-      "collection squishy conseils",
+      "TikTok squishy video",
+      "satisfying squish ASMR",
+      "squishy collector tips",
     ],
     sections: [
       {
-        heading: "Lumière et cadrage",
+        heading: "Lighting and framing",
         paragraphs: [
-          "La lumière latérale naturelle met mieux en valeur le slow-rise que le néon plafond. Décalez légèrement la raviole pour ne pas cacher les détails avec les pouces.",
+          "Natural side light shows slow-rise texture better than overhead fluorescents. Hold the dumpling slightly off-centre so thumbs do not block the face of the toy.",
         ],
       },
       {
-        heading: "Communauté",
+        heading: "Community noSquishy-Bun",
         paragraphs: [
-          "Créditez les sons, indiquez les partenariats, et protégez la vie privée des enfants à l’écran — bon sens partagé partout en Europe.",
+          "Credit original audio, disclose gifted or sponsored items, and keep young children’s faces private unless guardians consent — noSquishy-Bun align across North America and the UK even when laws differ in detail.",
         ],
       },
     ],
   },
   {
     slug: "toy-safety-ages-3-plus-usa-canada-uk",
-    title: "Sécurité des jouets dès 3 ans : repères pour les familles en Europe",
+    title: "Toy Safety for Ages 3+: What US, Canadian & UK Families Should Know",
     description:
-      "Âges, petites pièces et supervision — information générale, pas conseil juridique — pour foyers français, belges et européens.",
+      "High-level orientation on age labels, small parts, and supervision — not legal advice — for squishy dumpling toys sold to American, Canadian, and British households.",
     publishedAt: "2026-03-26",
     keywords: [
-      "jouet 3 ans sécurité",
-      "normes jouet Europe",
-      "squishy enfant",
-      "CE jouet",
+      "toy safety ages 3",
+      "UK toy regulation",
+      "Canada toy safety",
+      "US CPSIA toys",
     ],
     sections: [
       {
-        heading: "Lire l’étiquette",
+        heading: "Read the label every time",
         paragraphs: [
-          "L’âge indiqué tient compte des pièces et matériaux. Marqué 3+ : garder hors de portée des bébés qui portent tout à la bouche.",
+          "Manufacturers assign ages based on small parts, materials, and testing. If a squishy is marked 3+, keep it away from infants who mouth toys.",
         ],
       },
       {
-        heading: "Cadres européens",
+        heading: "Jurisdictions differ",
         paragraphs: [
-          "L’Union européenne encadre les jouets (marquage CE, etc.). Votre vendeur doit préciser les infos essentielles ; en doute, contactez la marque avant d’offrir.",
+          "The United States, Canada, and the United Kingdom each maintain consumer product frameworks. Your retailer should list compliance basics; when in doubt, ask the brand directly before gifting.",
         ],
       },
       {
-        heading: "Ce n’est pas à manger",
+        heading: "This is not food",
         paragraphs: [
-          "Les ravioles squishy ressemblent à de la nourriture mais ne le sont pas. Rangez-les hors de portée des animaux et des tout-petits.",
+          "Dumpling squishies look edible but are not. Store them out of reach of pets and toddlers, and teach older kids the difference between kitchen food and foam toys.",
         ],
       },
     ],

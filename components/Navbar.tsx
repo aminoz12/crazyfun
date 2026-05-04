@@ -67,14 +67,14 @@ export function Navbar() {
 
         {!isProductsPage && (
           <nav
-            aria-label="Navigation principale"
+            aria-label="Main"
             className="hidden items-stretch divide-x divide-pink-200/70 rounded-full border border-pink-100/90 bg-white/90 text-sm shadow-sm md:flex"
           >
             <Link
               href="/products"
               className="px-4 py-2 font-bold text-foreground transition-colors first:pl-5 hover:bg-pink-50/80 hover:text-accent"
             >
-              Produit
+              Produits
             </Link>
             <Link
               href="/blog"
@@ -82,12 +82,12 @@ export function Navbar() {
             >
               Blog
             </Link>
-            <a
-              href="/products#offer"
+            <Link
+              href="/products"
               className="px-4 py-2 font-bold text-foreground transition-colors hover:bg-pink-50/80 hover:text-accent"
             >
               Acheter
-            </a>
+            </Link>
             <a
               href="/#faq"
               className="px-4 py-2 font-bold text-foreground transition-colors last:pr-5 hover:bg-pink-50/80 hover:text-accent"
@@ -99,22 +99,18 @@ export function Navbar() {
 
         <div className="flex items-center gap-2">
           {!isProductsPage && (
-            <a
-              href="/products#offer"
-              className="hidden rounded-xl bg-[#ffd500] px-4 py-2 text-sm font-black text-[#2d2384] shadow-md shadow-amber-400/40 transition-transform hover:scale-[1.03] hover:brightness-105 active:scale-[0.98] sm:inline-flex"
+            <Link
+              href="/products"
+              className="hidden rounded-xl bg-[#ffd500] px-4 py-2 text-sm font-black text-[#2b2282] shadow-md shadow-amber-400/40 transition-transform hover:scale-[1.03] hover:brightness-105 active:scale-[0.98] sm:inline-flex"
             >
-              ACHETER
-            </a>
+              ACHETER MAINTENANT
+            </Link>
           )}
           <button
             type="button"
             onClick={toggleCart}
             className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-pink-200 bg-white text-foreground shadow-sm transition hover:border-accent/40 hover:shadow-md sm:h-11 sm:w-11"
-            aria-label={
-              count > 0
-                ? `Ouvrir le panier, ${count} article${count > 1 ? "s" : ""}`
-                : "Ouvrir le panier"
-            }
+            aria-label={count > 0 ? `Ouvrir panier, ${count} articles` : "Ouvrir panier"}
           >
             <CartIcon className="h-[22px] w-[22px] sm:h-6 sm:w-6" />
             {count > 0 && (

@@ -15,10 +15,10 @@ export function Pricing() {
           Tarifs
         </p>
         <h2 className="mt-2 font-[family-name:var(--font-fredoka)] text-3xl font-bold text-foreground sm:text-4xl">
-          Choisissez votre lot. Plongez dans le mystère.
+          Choisissez votre pack. Embrassez le mystère.
         </h2>
         <p className="mx-auto mt-3 max-w-2xl text-sm font-semibold text-muted sm:text-base">
-          Paiement sécurisé avec Stripe en euros — sans compte obligatoire.
+          Chaque option paie en toute sécurité avec Stripe — aucun compte requis.
         </p>
       </div>
 

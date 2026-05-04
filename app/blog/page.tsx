@@ -13,37 +13,36 @@ import {
 } from "@/lib/seo";
 
 const blogDescription =
-  "Guides squishy, conseils livraison en Europe et idées cadeaux autour des ravioles mystère Crazy Fun — pour acheter en confiance en France et en Belgique.";
+  "Squishy guides, shipping tips for the USA, Canada & UK, and mystery dumpling ideas — written to help you shop Crazy Fun rainbow squishy buns with confidence.";
 
 export const metadata: Metadata = {
-  title: "Blog — squishy mystère, livraison Europe & idées cadeaux",
+  title: "Blog — mystery squishy dumplings, shipping & gift ideas",
   description: blogDescription,
   alternates: {
     canonical: "/blog",
     languages: {
       "x-default": "/blog",
-      fr: "/blog",
-      "fr-FR": "/blog",
-      "fr-BE": "/blog",
+      "en-US": "/blog",
+      "en-CA": "/blog",
+      "en-GB": "/blog",
     },
   },
   keywords: [
-    "blog squishy",
-    "guide raviole mystère",
-    "livraison jouet Europe",
+    "squishy blog",
+    "mystery dumpling guide",
+    "USA Canada UK toy shipping",
     "Crazy Fun squishy",
-    "articles fidget",
+    "fidget toy articles",
   ],
   openGraph: {
     type: "website",
-    locale: "fr_FR",
     url: "/blog",
     title: `Blog | ${SITE_NAME}`,
     description: blogDescription,
     images: [
       {
         url: new URL("/herosqueeze.png", getMetadataBase()),
-        alt: "Jouet squishy raviole mystère",
+        alt: "SquishyBun mystery dumpling toy",
       },
     ],
   },
@@ -69,7 +68,7 @@ export default function BlogIndexPage() {
               Blog
             </p>
             <h1 className="mt-2 font-[family-name:var(--font-fredoka)] text-3xl font-black tracking-tight text-foreground sm:text-4xl">
-              Guides squishy pour la France & l’Europe
+              Squishy guides for the US, Canada & UK
             </h1>
             <p className="mt-4 text-base leading-relaxed text-foreground/80">
               {blogDescription}
@@ -78,7 +77,7 @@ export default function BlogIndexPage() {
               href="/products#offer"
               className="mt-6 inline-flex rounded-xl bg-[#ffd500] px-5 py-3 text-sm font-black uppercase tracking-wide text-[#2d2384] shadow-md shadow-amber-400/35 transition hover:brightness-105"
             >
-              Voir la boutique
+              Shop mystery dumplings
             </Link>
           </header>
 
@@ -90,7 +89,7 @@ export default function BlogIndexPage() {
                     dateTime={post.publishedAt}
                     className="text-xs font-bold uppercase tracking-wide text-primary-dark/80"
                   >
-                    {new Date(post.publishedAt).toLocaleDateString("fr-FR", {
+                    {new Date(post.publishedAt).toLocaleDateString("en-GB", {
                       year: "numeric",
                       month: "long",
                       day: "numeric",
@@ -111,7 +110,7 @@ export default function BlogIndexPage() {
                     href={`/blog/${post.slug}`}
                     className="mt-5 inline-flex text-sm font-extrabold text-primary-dark underline-offset-4 hover:underline"
                   >
-                    Lire l’article →
+                    Read article →
                   </Link>
                 </article>
               </li>

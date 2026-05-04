@@ -31,33 +31,33 @@ export function Hero() {
               Crazy Fun
             </span>
             <span className="hidden text-[11px] font-extrabold uppercase tracking-wide text-white/85 sm:inline">
-              TENDANCE · VIRAL EN EUROPE
+              TENDANCE SAUVAGE · RIDICULEMENT VIRAL
             </span>
           </div>
           <a
-            href="/products#offer"
+            href="/products"
             className="text-[11px] font-extrabold uppercase tracking-wide text-white hover:text-yellow-200 sm:text-xs"
           >
-            ACHETER
+            ACHETER MAINTENANT
           </a>
         </div>
 
         <div className="relative grid min-h-[340px] items-center gap-8 px-6 pb-8 pt-7 sm:min-h-[420px] sm:px-8 lg:grid-cols-[1fr_1.2fr] lg:px-10">
           <div className="relative z-10">
             <h1 className="font-[family-name:var(--font-fredoka)] text-4xl font-black uppercase leading-[0.95] tracking-tight text-white drop-shadow-[0_3px_0_rgba(0,0,0,0.2)] sm:text-5xl lg:text-6xl">
-              MANIA DES RAVIOLES
+              FOLIE DES RAVIOLES
               <br />
-              ÇA DÉBARQUE !
+              PREND LE CONTRÔLE !
             </h1>
             <p className="mt-4 max-w-md text-sm font-semibold leading-relaxed text-white/90 sm:text-base">
-              Le phénomène TikTok dont vous ne pourrez plus vous passer. Le Squishy
-              Bun viral qui transforme le scroll en obsession — livraison en Europe.
+              Le phénomène TikTok que vous ne pourrez pas lâcher. La raviole
+              Squishy qui transforme le scrolling en obsession.
             </p>
             <a
-              href="/products#offer"
+              href="/products"
               className="mt-6 inline-flex rounded-lg bg-[#ffd500] px-5 py-3 text-sm font-black uppercase tracking-wide text-[#2d2384] shadow-lg transition hover:brightness-105"
             >
-              ACHETER
+              ACHETER MAINTENANT
             </a>
           </div>
 
@@ -70,7 +70,7 @@ export function Hero() {
             <div className="relative aspect-[16/9] overflow-hidden rounded-xl">
               <Image
                 src={HERO_IMAGE}
-                alt="Squishy Bun Crazy Fun — visuel hero"
+                alt="Squishy Bun hero"
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 55vw"

@@ -38,19 +38,18 @@ export function UrgencyBar() {
     <div className="border-b border-amber-300/70 bg-gradient-to-r from-[#fff5d9] via-[#fff0bf] to-[#ffe4a3] px-4 py-2.5 text-center text-xs font-semibold text-[#3c2a00] sm:text-sm">
       <span className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-2">
         <span className="rounded-full border border-amber-300/70 bg-white/90 px-3 py-1 shadow-sm">
-          Fin de l’offre flash dans{" "}
+          Offre flash se termine dans{" "}
           <span className="tabular-nums font-black text-[#7c3aed]">
             {mounted ? `${pad(h)}h ${pad(m)}m ${pad(s)}s` : "––h ––m ––s"}
           </span>
         </span>
         <span className="hidden text-amber-700/70 sm:inline">•</span>
         <span className="rounded-full bg-[#2d2384] px-3 py-1 font-black uppercase tracking-wide text-white">
-          {isLowStock ? "Presque épuisé" : "Tendance"}
+          {isLowStock ? "Bientôt épuisé" : "Tendance actuelle"}
         </span>
         <span className="font-bold">
-          Plus que{" "}
-          <strong className="text-[#e11d48]">{product.stockRemaining}</strong> à ce prix
-          promo
+          Plus que <strong className="text-[#e11d48]">{product.stockRemaining}</strong> restants à
+          ce prix de lancement
         </span>
       </span>
     </div>

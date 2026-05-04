@@ -19,7 +19,7 @@ export function FAQ() {
           FAQ
         </p>
         <h2 className="mt-2 font-[family-name:var(--font-fredoka)] text-3xl font-bold text-foreground sm:text-4xl">
-          Des questions ? On a les réponses.
+          Questions ? Nous avons des réponses.
         </h2>
       </div>
 

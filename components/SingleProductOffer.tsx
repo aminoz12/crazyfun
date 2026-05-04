@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useMemo, useState } from "react";
 import { redirectToStripeCheckout } from "@/lib/checkout-client";
 import type { ProductSizeOption } from "@/lib/data";
-import { qualifiesForFreeDeliverySubtotalEur } from "@/lib/delivery";
+import { qualifiesForFreeDeliverySubtotal } from "@/lib/delivery";
 import { useCartStore } from "@/lib/store/use-cart-store";
 
 type SingleProductOfferProps = {
@@ -15,14 +15,14 @@ type SingleProductOfferProps = {
   name: string;
   description: string;
   images: readonly string[];
-  deliveryEuro: number;
+  deliveryUsd: number;
   options: readonly ProductSizeOption[];
 };
 
-function formatEuro(n: number) {
-  return new Intl.NumberFormat("fr-FR", {
+function moneyUsd(n: number) {
+  return new Intl.NumberFormat("en-US", {
     style: "currency",
-    currency: "EUR",
+    currency: "USD",
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(n);
@@ -35,7 +35,7 @@ export function SingleProductOffer({
   name,
   description,
   images,
-  deliveryEuro,
+  deliveryUsd,
   options,
 }: SingleProductOfferProps) {
   const addTier = useCartStore((s) => s.addTier);
@@ -50,10 +50,10 @@ export function SingleProductOffer({
   );
 
   if (!selected) return null;
-  const subtotalEur = selected.priceEuro;
-  const deliveryFree = qualifiesForFreeDeliverySubtotalEur(subtotalEur);
-  const deliveryCharge = deliveryFree ? 0 : deliveryEuro;
-  const total = subtotalEur + deliveryCharge;
+  const subtotalUsd = selected.priceUsd;
+  const deliveryFree = qualifiesForFreeDeliverySubtotal(subtotalUsd);
+  const deliveryCharge = deliveryFree ? 0 : deliveryUsd;
+  const total = subtotalUsd + deliveryCharge;
   const heroSrc = images[imageIndex] ?? images[0];
 
   async function buyNow() {
@@ -68,7 +68,7 @@ export function SingleProductOffer({
   const pickerPanel = showPicker && (
     <div className="mt-5 rounded-2xl border border-pink-100 bg-pink-50/40 p-4">
       <p className="text-sm font-extrabold uppercase tracking-wider text-foreground">
-        Choisir la taille
+        Choose size
       </p>
       <div className="mt-3 grid gap-2">
         {options.map((opt) => (
@@ -81,7 +81,7 @@ export function SingleProductOffer({
             }`}
           >
             <span>
-              {opt.label} — {formatEuro(opt.priceEuro)}
+              {opt.label} - {moneyUsd(opt.priceUsd)}
             </span>
             <input
               className="h-4 w-4 accent-violet-600"
@@ -96,16 +96,16 @@ export function SingleProductOffer({
 
       <div className="mt-4 space-y-1 text-sm font-semibold text-foreground">
         <p>
-          Produit : <strong>{formatEuro(selected.priceEuro)}</strong>
+          Product: <strong>{moneyUsd(selected.priceUsd)}</strong>
         </p>
         <p>
-          Livraison :{" "}
+          Delivery:{" "}
           <strong>
-            {deliveryFree ? "Offerte" : formatEuro(deliveryEuro)}
+            {deliveryFree ? "FREE" : moneyUsd(deliveryUsd)}
           </strong>
         </p>
         <p className="text-base">
-          Total : <strong>{formatEuro(total)}</strong>
+          Total: <strong>{moneyUsd(total)}</strong>
         </p>
       </div>
 
@@ -116,12 +116,12 @@ export function SingleProductOffer({
             addTier({
               id: selected.id,
               name: `${name} (${selected.label})`,
-              unitPriceEuro: selected.priceEuro,
+              unitPriceUsd: selected.priceUsd,
             })
           }
           className="w-full rounded-2xl bg-foreground py-3.5 text-center text-sm font-extrabold text-white shadow-lg transition hover:opacity-95 active:scale-[0.99]"
         >
-          Ajouter au panier
+          Add to cart
         </button>
         <button
           type="button"
@@ -129,7 +129,7 @@ export function SingleProductOffer({
           onClick={buyNow}
           className="w-full rounded-2xl border-2 border-pink-200 py-3 text-center text-sm font-extrabold text-foreground transition hover:border-accent/50 disabled:opacity-60"
         >
-          {checkoutLoading ? "Redirection…" : "Acheter"}
+          {checkoutLoading ? "Redirecting…" : "Buy now"}
         </button>
       </div>
     </div>
@@ -157,7 +157,7 @@ export function SingleProductOffer({
                   onClick={() => setShowPicker((v) => !v)}
                   className="w-full rounded-2xl bg-accent px-8 py-5 text-center text-lg font-extrabold text-white shadow-xl shadow-accent/40 transition hover:scale-[1.02] hover:opacity-95 active:scale-[0.98] md:min-h-[4.5rem] md:text-xl"
                 >
-                  Acheter
+                  Buy now
                 </button>
               </div>
             </div>
@@ -172,7 +172,7 @@ export function SingleProductOffer({
     <section id={id} className={className}>
       <div className="rounded-3xl border border-pink-100 bg-white p-5 shadow-xl shadow-pink-200/30 sm:p-7">
         <p className="text-sm font-extrabold uppercase tracking-widest text-accent">
-          Produit
+          Product
         </p>
         <h2 className="mt-2 font-[family-name:var(--font-fredoka)] text-3xl font-bold text-foreground sm:text-4xl">
           {name}
@@ -224,7 +224,7 @@ export function SingleProductOffer({
             onClick={() => setShowPicker((v) => !v)}
             className="w-full rounded-2xl bg-accent py-3.5 text-center text-sm font-extrabold text-white shadow-lg shadow-accent/25 transition hover:opacity-95"
           >
-            Acheter
+            Buy now
           </button>
         </div>
 

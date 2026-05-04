@@ -3,17 +3,18 @@ import type { BlogPost } from "@/lib/blog-data";
 import { blogPosts } from "@/lib/blog-data";
 import { faqItems, singleProductOffer, siteIconPath, social } from "@/lib/data";
 
-export const SITE_NAME = "SquishyBun Dumplings";
+export const SITE_NAME = "SquishyBun Ravioles";
 export const SITE_TAGLINE =
-  "Jouets squishy raviole mystère — boîte surprise, slow-rise, livraison en France, Belgique et Union européenne. Paiement sécurisé en euros.";
+  "Jouets squishy raviole mystère — fun blind-box, squish slow-rise, livraison France, Belgique & Union européenne.";
 
-/** URL canonique : définir NEXT_PUBLIC_SITE_URL en production. */
+/** Canonical origin for metadata, sitemap, and JSON-LD. Set NEXT_PUBLIC_SITE_URL in production. */
 export function getSiteUrl(): string {
+  if (process.env.NODE_ENV === "development") {
+    return "http://localhost:3000";
+  }
   const fromEnv = process.env.NEXT_PUBLIC_SITE_URL?.trim();
   if (fromEnv) return fromEnv.replace(/\/$/, "");
-  if (process.env.VERCEL_URL)
-    return `https://${process.env.VERCEL_URL.replace(/\/$/, "")}`;
-  return "http://localhost:3000";
+  return "https://www.squishy-bun.com";
 }
 
 export function getMetadataBase(): URL {
@@ -43,7 +44,7 @@ export function rootMetadataExtras(): Pick<
   return {
     metadataBase: base,
     title: {
-      default: `${SITE_NAME} | Jouet squishy mystère | France & Europe`,
+      default: `${SITE_NAME} | Jouets Squishy Raviole Mystère | France, Belgique & Union européenne`,
       template: `%s | ${SITE_NAME}`,
     },
     description: SITE_TAGLINE,
@@ -62,14 +63,14 @@ export function rootMetadataExtras(): Pick<
       "anti-stress bureau",
       "jouet enfant 3 ans",
     ],
-    authors: [{ name: SITE_NAME, url: base.toString() }],
+    authors: [{ name: SITE_NAME }],
     creator: SITE_NAME,
     category: "Jouets",
     alternates: {
       canonical: "/",
       languages: {
         "x-default": "/",
-        fr: "/",
+        "fr": "/",
         "fr-FR": "/",
         "fr-BE": "/",
       },
@@ -100,6 +101,7 @@ export function rootMetadataExtras(): Pick<
       description: SITE_TAGLINE,
       images: [ogImage.toString()],
     },
+    /** Tab + bookmark icon: `public/icon.png` (also mirrored as `app/icon.png`). */
     icons: {
       icon: siteIconPath,
       shortcut: siteIconPath,
@@ -123,7 +125,6 @@ export function organizationJsonLd() {
     url,
     logo: absoluteUrl(OG_IMAGE_PATH),
     sameAs: [social.tiktok, social.instagram],
-    areaServed: ["FR", "BE", "EU"],
   };
 }
 
@@ -136,7 +137,7 @@ export function websiteJsonLd() {
     name: SITE_NAME,
     description: SITE_TAGLINE,
     publisher: { "@id": `${url}/#organization` },
-    inLanguage: "fr-FR",
+    inLanguage: ["en-US", "en-CA", "en-GB"],
   };
 }
 
@@ -164,13 +165,13 @@ export function productBreadcrumbJsonLd() {
       {
         "@type": "ListItem" as const,
         position: 1,
-        name: "Accueil",
+        name: "Home",
         item: url,
       },
       {
         "@type": "ListItem" as const,
         position: 2,
-        name: "Boutique",
+        name: "Shop",
         item: productsUrl,
       },
     ],
@@ -186,9 +187,9 @@ export function blogIndexJsonLd() {
     url: blogUrl,
     name: `${SITE_NAME} — Blog`,
     description:
-      "Guides, conseils livraison en Europe et idées cadeaux autour des squishy raviole mystère Crazy Fun.",
+      "Guides, shipping tips, and squishy dumpling ideas for shoppers in the United States, Canada, and the United Kingdom.",
     publisher: { "@id": `${url}/#organization` },
-    inLanguage: "fr-FR",
+    inLanguage: ["en-US", "en-CA", "en-GB"],
     blogPost: blogPosts.map((p) => ({
       "@type": "BlogPosting" as const,
       headline: p.title,
@@ -218,7 +219,7 @@ export function blogPostingJsonLd(post: BlogPost) {
       url,
     },
     publisher: { "@id": `${url}/#organization` },
-    inLanguage: "fr-FR",
+    inLanguage: ["en-US", "en-CA", "en-GB"],
     keywords: post.keywords.join(", "),
   };
 }
@@ -229,7 +230,7 @@ function isRasterImagePath(src: string) {
 
 export function productJsonLd() {
   const url = getSiteUrl();
-  const prices = singleProductOffer.options.map((o) => o.priceEuro);
+  const prices = singleProductOffer.options.map((o) => o.priceUsd);
   const low = Math.min(...prices);
   const high = Math.max(...prices);
   const productUrl = `${url}/products`;
@@ -251,7 +252,7 @@ export function productJsonLd() {
     offers: {
       "@type": "AggregateOffer" as const,
       url: productUrl,
-      priceCurrency: "EUR",
+      priceCurrency: "USD",
       lowPrice: low,
       highPrice: high,
       offerCount: singleProductOffer.options.length,

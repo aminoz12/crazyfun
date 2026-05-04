@@ -1,17 +1,18 @@
 "use client";
 
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { redirectToStripeCheckout } from "@/lib/checkout-client";
 import { resolveStripeCheckoutParams } from "@/lib/cart-helpers";
 import {
-  FREE_DELIVERY_THRESHOLD_EUR,
-  qualifiesForFreeDeliverySubtotalEur,
+  FREE_DELIVERY_THRESHOLD_USD,
+  qualifiesForFreeDeliverySubtotal,
 } from "@/lib/delivery";
 import { singleProductOffer } from "@/lib/data";
 import { useCartStore } from "@/lib/store/use-cart-store";
 
-function formatEuro(n: number) {
+function formatUsd(n: number) {
   return new Intl.NumberFormat("fr-FR", {
     style: "currency",
     currency: "EUR",
@@ -19,7 +20,8 @@ function formatEuro(n: number) {
 }
 
 /**
- * Panier latéral. Paiement via POST /api/checkout (Stripe Checkout Session, EUR).
+ * Slide-over cart. Checkout always uses POST /api/checkout (Stripe Checkout
+ * Session) so amount and currency match the cart line — no static Payment Links.
  */
 export function CartDrawer() {
   const reduce = useReducedMotion();
@@ -32,13 +34,13 @@ export function CartDrawer() {
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
-  const subtotalEur = items.reduce(
-    (acc, line) => acc + line.unitPriceEuro * line.quantity,
+  const subtotalUsd = items.reduce(
+    (acc, line) => acc + line.unitPriceUsd * line.quantity,
     0,
   );
-  const freeDelivery = qualifiesForFreeDeliverySubtotalEur(subtotalEur);
-  const deliveryEur = freeDelivery ? 0 : singleProductOffer.deliveryEuro;
-  const estimatedTotalEur = subtotalEur + deliveryEur;
+  const freeDelivery = qualifiesForFreeDeliverySubtotal(subtotalUsd);
+  const deliveryUsd = freeDelivery ? 0 : singleProductOffer.deliveryUsd;
+  const estimatedTotalUsd = subtotalUsd + deliveryUsd;
 
   useEffect(() => {
     if (!isOpen) return;
@@ -57,21 +59,32 @@ export function CartDrawer() {
   }, [isOpen]);
 
   const startCheckout = useCallback(async () => {
-    const first = useCartStore.getState().items[0];
-    if (!first) return;
+    const items = useCartStore.getState().items;
+    if (items.length === 0) return;
+    
+    // Validate all items can be checked out
+    for (const item of items) {
+      const resolved = resolveStripeCheckoutParams(item);
+      if (!resolved) {
+        setCheckoutError(
+          `\u201c${item.name}\u201d can\u2019t be checked out. Remove it and add the product again from the shop.`,
+        );
+        return;
+      }
+    }
+    
     setCheckoutError(null);
     setCheckoutLoading(true);
     try {
-      const resolved = resolveStripeCheckoutParams(first);
-      if (!resolved) {
-        throw new Error(
-          "Cette ligne ne peut pas être payée. Supprimez-la et rajoutez le produit depuis la boutique.",
-        );
-      }
-      await redirectToStripeCheckout(resolved.sizeId, resolved.quantity);
+      // Send all items to checkout
+      const cartItems = items.map((item) => ({
+        id: item.id,
+        quantity: item.quantity,
+      }));
+      await redirectToStripeCheckout(cartItems);
     } catch (e) {
       setCheckoutError(
-        e instanceof Error ? e.message : "Le paiement n’a pas pu démarrer",
+        e instanceof Error ? e.message : "Checkout could not start",
       );
       setCheckoutLoading(false);
     }
@@ -83,7 +96,7 @@ export function CartDrawer() {
         <>
           <motion.button
             type="button"
-            aria-label="Fermer l’arrière-plan du panier"
+            aria-label="Fermer le panier"
             className="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -119,8 +132,8 @@ export function CartDrawer() {
             <div className="flex-1 overflow-y-auto px-5 py-4">
               {items.length === 0 ? (
                 <p className="text-sm font-semibold text-muted">
-                  Panier vide — choisissez une taille sur la fiche produit et
-                  ajoutez-la ici, ou appuyez sur Acheter.
+                  Votre panier est vide — choisissez une taille sur la page produit et ajoutez
+                  la ici, ou appuyez sur Acheter maintenant.
                 </p>
               ) : (
                 <ul className="space-y-4">
@@ -135,7 +148,7 @@ export function CartDrawer() {
                             {line.name}
                           </p>
                           <p className="text-sm font-bold text-muted">
-                            {formatEuro(line.unitPriceEuro)} l’unité
+                            {formatUsd(line.unitPriceUsd)} chacun
                           </p>
                         </div>
                         <button
@@ -143,7 +156,7 @@ export function CartDrawer() {
                           onClick={() => removeLine(line.id)}
                           className="text-xs font-extrabold uppercase tracking-wide text-primary-dark hover:underline"
                         >
-                          Retirer
+                          Supprimer
                         </button>
                       </div>
                       <div className="mt-3 flex items-center justify-between">
@@ -164,13 +177,13 @@ export function CartDrawer() {
                           />
                         </label>
                         <p className="text-sm font-extrabold">
-                          {formatEuro(line.unitPriceEuro * line.quantity)}
+                          {formatUsd(line.unitPriceUsd * line.quantity)}
                         </p>
                       </div>
                       {!resolveStripeCheckoutParams(line) && (
                         <p className="mt-2 text-xs font-bold text-amber-800">
-                          Retirez cette ligne — ancien format. Rajoutez l’article
-                          depuis la fiche produit.
+                          Supprimez cette ligne — elle utilise un ancien format de panier. Ajoutez
+                          l'article depuis la page produit.
                         </p>
                       )}
                     </li>
@@ -183,30 +196,29 @@ export function CartDrawer() {
               <div className="space-y-1 text-sm font-extrabold">
                 <div className="flex items-center justify-between">
                   <span>Sous-total</span>
-                  <span>{formatEuro(subtotalEur)}</span>
+                  <span>{formatUsd(subtotalUsd)}</span>
                 </div>
                 <div className="flex items-center justify-between text-muted">
                   <span>Livraison</span>
                   <span>
                     {freeDelivery ? (
                       <span className="font-extrabold text-emerald-600">
-                        Offerte
+                        Gratuite
                       </span>
                     ) : (
-                      formatEuro(singleProductOffer.deliveryEuro)
+                      formatUsd(singleProductOffer.deliveryUsd)
                     )}
                   </span>
                 </div>
                 <div className="flex items-center justify-between border-t border-pink-100 pt-2 text-base text-foreground">
                   <span>Total estimé</span>
-                  <span>{formatEuro(estimatedTotalEur)}</span>
+                  <span>{formatUsd(estimatedTotalUsd)}</span>
                 </div>
               </div>
               {items.length > 0 && (
                 <p className="mt-2 text-xs font-semibold text-muted">
-                  Livraison offerte dès {formatEuro(FREE_DELIVERY_THRESHOLD_EUR)}{" "}
-                  de sous-total (voir la bannière). Votre sous-total :{" "}
-                  {formatEuro(subtotalEur)}.
+                  Les sous-totaux de {formatUsd(FREE_DELIVERY_THRESHOLD_USD)} ou plus
+                  qualifient pour la livraison gratuite (voir bannière supérieure). Votre sous-total est {formatUsd(subtotalUsd)}.
                 </p>
               )}
               {checkoutError && (
@@ -220,11 +232,17 @@ export function CartDrawer() {
                 onClick={startCheckout}
                 className="mt-4 w-full rounded-2xl bg-accent py-3.5 text-sm font-extrabold text-white shadow-lg shadow-accent/25 transition enabled:hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-40"
               >
-                {checkoutLoading ? "Redirection…" : "Payer"}
+                {checkoutLoading ? "Redirection..." : "Payer"}
               </button>
-              <p className="mt-2 text-xs font-semibold text-muted">
-                Un paiement Stripe par visite pour la première ligne. Modifiez
-                la quantité ou retirez des lignes pour changer d’article.
+              <Link
+                href="/products"
+                onClick={closeCart}
+                className="mt-3 block w-full rounded-2xl border-2 border-pink-200 py-3 text-center text-sm font-extrabold text-foreground transition hover:border-accent/50 hover:bg-pink-50"
+              >
+                Ajouter plus de produits
+              </Link>
+              <p className="mt-3 text-xs font-semibold text-muted">
+                Tous les articles de votre panier seront inclus dans la commande. Modifiez les quantités ci-dessus ou supprimez des articles.
               </p>
             </div>
           </motion.aside>

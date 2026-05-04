@@ -12,9 +12,9 @@ function formatReviewDate(iso: string) {
   const [y, m, d] = iso.split("-").map(Number);
   if (!y || !m || !d) return iso;
   const dt = new Date(y, m - 1, d);
-  return dt.toLocaleDateString("fr-FR", {
-    day: "numeric",
-    month: "long",
+  return dt.toLocaleDateString("en-GB", {
+    day: "2-digit",
+    month: "2-digit",
     year: "numeric",
   });
 }
@@ -75,7 +75,7 @@ function VerifiedBadge() {
           strokeLinejoin="round"
         />
       </svg>
-      Vérifié
+      Verified
     </span>
   );
 }
@@ -89,7 +89,7 @@ function ReviewSlide({ review }: { review: ProductPageReview }) {
       <div className="relative mx-auto h-[4.5rem] w-[4.5rem] shrink-0 overflow-hidden rounded-2xl bg-stone-100 shadow-inner ring-1 ring-stone-900/5 sm:mx-0 sm:h-[5.25rem] sm:w-[5.25rem]">
         <Image
           src={review.image}
-          alt={`Photo partagée par ${review.author}`}
+          alt={`Photo shared by ${review.author}`}
           fill
           sizes="(max-width: 640px) 72px, 84px"
           className="object-cover"
@@ -119,10 +119,10 @@ function ReviewSlide({ review }: { review: ProductPageReview }) {
         ) : null}
 
         <p className="mt-3 hidden text-xs leading-relaxed text-stone-400 sm:block">
-          {posted} · Commande du {purchased} · {review.author}
+          {posted} · Order {purchased} · {review.author}
         </p>
         <p className="sr-only sm:hidden">
-          Avis du {posted}, suite à une commande du {purchased} par {review.author}
+          Review on {posted}, following an order placed on {purchased} by {review.author}
         </p>
       </div>
     </div>
@@ -194,7 +194,7 @@ export function ProductReviewsSection({ className = "" }: ProductReviewsSectionP
           className="relative mt-8"
           role="region"
           aria-roledescription="carousel"
-          aria-label="Avis clients"
+          aria-label="Customer reviews"
           onTouchStart={onTouchStart}
           onTouchEnd={onTouchEnd}
         >
@@ -216,7 +216,7 @@ export function ProductReviewsSection({ className = "" }: ProductReviewsSectionP
               type="button"
               onClick={() => go(1)}
               className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-stone-400 transition-colors hover:bg-stone-200/60 hover:text-stone-800 active:bg-stone-200/80"
-              aria-label="Avis suivant"
+              aria-label="Next review"
             >
               <ChevronRight className="h-5 w-5" />
             </button>
@@ -233,7 +233,7 @@ export function ProductReviewsSection({ className = "" }: ProductReviewsSectionP
                 type="button"
                 role="tab"
                 aria-selected={i === index}
-                aria-label={`Avis ${i + 1} sur ${n}, ${r.author}`}
+                aria-label={`Review ${i + 1} of ${n}, ${r.author}`}
                 onClick={() => goTo(i)}
                 className={`h-1.5 rounded-full transition-all duration-300 ease-out ${
                   i === index ? "w-7 bg-stone-800" : "w-1.5 bg-stone-300 hover:bg-stone-400"

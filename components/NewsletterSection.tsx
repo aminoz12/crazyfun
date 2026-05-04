@@ -30,13 +30,13 @@ export function NewsletterSection() {
     >
       <div className="mx-auto max-w-lg px-4 text-center sm:px-6">
         <p className="text-xs font-extrabold uppercase tracking-[0.2em] text-primary-dark sm:text-sm">
-          Restez informé
+          Stay in the loop
         </p>
         <h2 className="mt-2 font-[family-name:var(--font-fredoka)] text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
           Newsletter
         </h2>
         <p className="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-foreground/65 sm:text-[0.9375rem]">
-          Nouveautés et réassorts en Europe. Désinscription en un clic.
+          Occasional updates on restocks and new drops. Unsubscribe anytime.
         </p>
 
         <div className="mt-7 rounded-2xl border border-pink-100/90 bg-white/90 p-5 shadow-[0_12px_40px_-24px_rgba(236,72,153,0.35)] ring-1 ring-pink-50/80 backdrop-blur-sm sm:p-6">
@@ -45,7 +45,7 @@ export function NewsletterSection() {
             className="flex flex-col gap-2.5 sm:flex-row sm:items-stretch sm:gap-2"
           >
             <label htmlFor="newsletter-email" className="sr-only">
-              Adresse e-mail
+              Email address
             </label>
             <input
               id="newsletter-email"
@@ -64,7 +64,7 @@ export function NewsletterSection() {
               type="submit"
               className="min-h-[2.875rem] shrink-0 rounded-xl bg-[#ffd500] px-7 text-sm font-black uppercase tracking-wide text-[#2d2384] shadow-md shadow-amber-400/30 transition hover:brightness-[1.03] active:scale-[0.99] sm:min-w-[8.5rem]"
             >
-              S’inscrire
+              Subscribe
             </button>
           </form>
 
@@ -73,7 +73,7 @@ export function NewsletterSection() {
               className="mt-4 rounded-lg bg-emerald-50/90 py-2.5 text-sm font-semibold text-emerald-800 ring-1 ring-emerald-100"
               role="status"
             >
-              Merci — vous êtes inscrit(e).
+              Thanks — you&apos;re on the list.
             </p>
           )}
           {status === "error" && (
@@ -81,12 +81,12 @@ export function NewsletterSection() {
               className="mt-4 rounded-lg bg-red-50/90 py-2.5 text-sm font-semibold text-red-700 ring-1 ring-red-100"
               role="alert"
             >
-              Veuillez saisir une adresse e-mail valide.
+              Please enter a valid email.
             </p>
           )}
 
           <p className="mt-4 text-[11px] font-medium text-foreground/45 sm:text-xs">
-            Pas de spam — uniquement l’essentiel.
+            No spam — we only email when it matters.
           </p>
         </div>
       </div>

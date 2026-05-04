@@ -1,16 +1,16 @@
 /**
- * Contenu produit et marketing (français, Europe).
- * Paiement : Stripe Checkout Sessions (POST /api/checkout).
+ * Central product + marketing copy.
+ * Checkout uses Stripe Checkout Sessions (POST /api/checkout), not Payment Links.
  */
 
 export const product = {
-  name: "SquishyBun Dumplings",
-  tagline: "Minuscules ravioles, maxi plaisir.",
-  /** Copie urgence — remplacer par du stock réel si backend plus tard */
+  name: "SquishyBun Ravioles",
+  tagline: "Minuscules ravioles. Maxi plaisir.",
+  /** Static urgency copy — swap for real inventory if you add backend later */
   stockRemaining: 47,
 } as const;
 
-/** Favicon, navbar, footer — placer `icon.png` dans `/public`. */
+/** Favicon, navbar, and footer — place `icon.png` in `/public`. */
 export const siteIconPath = "/icon.png" as const;
 
 export type PricingTierId = "single" | "triple" | "five";
@@ -56,52 +56,53 @@ export type ShowcaseSlide = {
   caption: string;
 };
 
+/** Product showcase carousel — files in `/public` */
 export const showcaseSlides: ShowcaseSlide[] = [
   {
     src: "/image2.jpg",
-    alt: "SquishyBun Dumplings, jouet anti-stress squishy",
-    caption: "Anti-stress à presser entre deux réunions",
+    alt: "Photo produit SquishyBun Ravioles, anti-stress",
+    caption: "Anti-stress à presser entre les réunions",
   },
   {
     src: "/image1.png",
-    alt: "SquishyBun Dumplings, déco de bureau kawaii",
-    caption: "Une touche mignonne sur le bureau",
+    alt: "Photo produit SquishyBun Ravioles, collection de bureau",
+    caption: "Collection de bureau mignonne qui procure de la joie",
   },
   {
     src: "/image3.jpg",
-    alt: "SquishyBun Dumplings, déballage mystère",
-    caption: "Surprise au déballage — le plaisir du mystère",
+    alt: "Photo produit SquishyBun Ravioles, mystère déballage",
+    caption: "Surprise mystère — déballage dopamine",
   },
 ];
 
 export const benefits = [
-  "Anti-stress à presser entre deux réunions",
-  "Une touche mignonne sur le bureau",
-  "Surprise au déballage — le plaisir du mystère",
+  "Anti-stress à presser entre les réunions",
+  "Collection de bureau mignonne qui procure de la joie",
+  "Surprise mystère — déballage dopamine",
 ] as const;
 
 export const reviews = [
   {
-    name: "Léa M.",
-    location: "Paris, France",
+    name: "Mia R.",
+    location: "Paris, FR",
     rating: 5,
-    text: "J’ai crié tellement c’est mignon. Déjà recommandé le lot de 3.",
+    text: "J'ai crié. C'est tellement idiot et parfait. J'ai déjà commandé le pack de 3.",
   },
   {
-    name: "Thomas K.",
-    location: "Bruxelles, Belgique",
+    name: "Jordan K.",
+    location: "Lyon, FR",
     rating: 5,
-    text: "Quali au toucher, envoi rapide, le squish est parfait.",
+    text: "Seems cher, livraison rapide, et le squish est *chef's kiss*.",
   },
   {
-    name: "Sofia R.",
-    location: "Lyon, France",
+    name: "Sam L.",
+    location: "Marseille, FR",
     rating: 5,
-    text: "Acheté pour rigoler, c’est devenu mon anti-stress du bureau.",
+    text: "Acheté pour plaisanter. C'est devenu ma raviole de soutien émotionnel.",
   },
 ] as const;
 
-/** Liste longue sur `/products` — style avis e-commerce. */
+/** Long-form list on `/products` — matches classic e‑commerce review layout. */
 export type ProductPageReview = {
   rating: number;
   title: string;
@@ -109,41 +110,42 @@ export type ProductPageReview = {
   reviewPosted: string;
   purchaseDate: string;
   author: string;
+  /** Customer / product photo in `/public` */
   image: string;
 };
 
 export const productPageReviews: ProductPageReview[] = [
   {
     rating: 5,
-    title: "Trop mignon, j’en ai recommandé",
-    body: "J’ai hurlé de joie. C’est débile et parfait à la fois — déjà commandé le pack de 3.",
+    title: "Trop mignon, j'ai dû en commander un autre",
+    body: "J'ai crié. C'est tellement idiot et parfait. J'ai déjà commandé le pack de 3.",
     reviewPosted: "2026-03-18",
     purchaseDate: "2026-03-02",
-    author: "Léa M.",
+    author: "Mia R.",
     image: "/rev1.png",
   },
   {
     rating: 5,
-    title: "« Attends… QUOI ? » au déballage",
-    body: "Je pensais que ce serait gadget. Dès que je l’ai pressé, j’ai éclaté de rire — hyper doux, slow-rise au top. Livraison rapide en France. Je le recommande.",
+    title: "J'ai ouvert et j'ai littéralement dit 'attend—QUOI ?'",
+    body: "Franchement, je pensais que ce serait un gadget. Le moment où je l'ai pressé, j'ai éclaté de rire — c'est tellement doux et slow-rise que je suis tombé amoureux. Arrivé vite aussi. Je le dis déjà à mes amis.",
     reviewPosted: "2026-03-12",
     purchaseDate: "2026-02-28",
-    author: "Thomas K.",
+    author: "Jordan K.",
     image: "/rev2.png",
   },
   {
     rating: 5,
-    title: "Pour ma fille… finalement on adore toutes les deux",
-    body: "Commandé pour l’anniversaire de ma fille, elle a adoré. Le côté mystère, c’est le fun. Honnêtement je le pique sur son bureau pour le presser — validé par les parents.",
+    title: "Pris pour ma fille — succès avec nous deux",
+    body: "Commandé pour l'anniversaire de ma fille et elle a crié en l'ouvrant. Le tirage mystère est tellement amusant. Honnêtement ? Je le vole discrètement de son bureau pour le presser — le squish est ridicule. Approuvé par papa.",
     reviewPosted: "2026-02-26",
     purchaseDate: "2026-02-10",
-    author: "Sofia R.",
+    author: "Sam L.",
     image: "/rev3.png",
   },
   {
     rating: 5,
-    title: "La nouvelle star de sa chambre — moi aussi impressionnée",
-    body: "Mystery dumpling pour ma fille : déballage pur bonheur. Slow-rise nickel, elle l’emmène partout. Je ne pensais pas accrocher autant. Je rachèterais.",
+    title: "La nouvelle préférée de ma fille — moi aussi je suis impressionné",
+    body: "Acheté la raviole mystère pour ma fille et le déballage était pure joie. Le slow-rise est parfait et elle l'emporte partout. Je ne m'attendais pas à l'aimer autant moi-même, mais nous y voilà. Referais l'achat.",
     reviewPosted: "2026-03-05",
     purchaseDate: "2026-02-19",
     author: "Elena V.",
@@ -151,7 +153,7 @@ export const productPageReviews: ProductPageReview[] = [
   },
   {
     rating: 5,
-    title: "Comme sur les vidéos",
+    title: "Exactement comme les vidéos",
     reviewPosted: "2026-01-30",
     purchaseDate: "2026-01-14",
     author: "Chris P.",
@@ -162,18 +164,18 @@ export const productPageReviews: ProductPageReview[] = [
 export const howItWorks = [
   {
     step: 1,
-    title: "Commandez votre lot",
-    body: "Choisissez 1, 3 ou 5 — chaque pack est une surprise.",
+    title: "Commandez votre pack",
+    body: "Choisissez 1, 3 ou 5 — chaque lot est une surprise mystère.",
   },
   {
     step: 2,
-    title: "On prépare le mystère",
-    body: "On emballe vos squishy avec soin (et du papier bulle).",
+    title: "Nous préparons le mystère",
+    body: "Nous sélectionnons les ravioles squishy avec amour (et du papier bulle).",
   },
   {
     step: 3,
-    title: "Vous déballez",
-    body: "Filmez, partagez, pressez — taguez-nous sur TikTok.",
+    title: "Vous déballiez la surprise",
+    body: "Filmez, montrez, pressez — identifiez-nous sur TikTok.",
   },
 ] as const;
 
@@ -181,20 +183,20 @@ export type FaqItem = { q: string; a: string };
 
 export const faqItems: FaqItem[] = [
   {
-    q: "Qu’est-ce qu’une raviole SquishyBun ?",
-    a: "Un petit jouet squishy slow-rise en forme de bao. Couleur et style exacts : surprise jusqu’à l’arrivée du colis.",
+    q: "Qu'est-ce qu'une raviole SquishyBun ?",
+    a: "Un jouet squishy slow-rise de taille paume inspiré des ravioles. Vous ne connaîtrez pas le style ou la couleur exacte avant son arrivée — c'est ça le fun.",
   },
   {
-    q: "Quels sont les délais de livraison en Europe ?",
-    a: "Expédition sous environ 2 jours ouvrés pour la plupart des commandes. Livraison généralement en 3 à 7 jours selon le pays (France, Belgique, UE). Suivi envoyé par e-mail.",
+    q: "Combien de temps prend la livraison ?",
+    a: "La plupart des commandes France et Belgique sont expédiées sous 2 jours ouvrables. Le transit est généralement de 3–7 jours ouvrables selon votre région. Vous recevrez le suivi par email.",
   },
   {
-    q: "Politique de remboursement ?",
-    a: "Article abîmé ou non conforme : contactez-nous sous 14 jours, on trouve une solution.",
+    q: "Quelle est votre politique de remboursement ?",
+    a: "Si quelque chose arrive endommagé ou non conforme à la description, emailez-nous sous 14 jours et nous corrigerons.",
   },
   {
-    q: "C’est comestible ?",
-    a: "Non — c’est un jouet. Ne pas manger le squishy.",
+    q: "C'est de la nourriture ?",
+    a: "Non — c'est un jouet. Ne mangez pas le squishy.",
   },
 ];
 
@@ -208,50 +210,244 @@ export type ProductSizeOption = {
   id: string;
   label: string;
   sizeCm: number;
-  priceEuro: number;
+  priceUsd: number;
 };
 
 export const singleProductOffer = {
   id: "squishybun-mystery-dumpling",
-  name: "Crazy Fun Rainbow — raviole mystère squishy bun",
+  name: "Raviole Squishy Arc-en-ciel Crazy Fun Mystère",
+  slug: "mystery-dumpling",
+  categoryName: "Raviole Squishy",
+  categoryImage: "/dumpling.png",
   description:
-    "Jouet sensoriel bao mystère, texture slow-rise, fun type boîte surprise — chance de dénicher la raviole ultra rare « Starlight » irisée. Dès 3 ans. Prix en euros (EUR), TVA incluse le cas échéant.",
-  deliveryEuro: 9,
+    "Jouet sensoriel fidget squishy raviole mystère — texture slow-rise, fun blind-box, et chance d'avoir la super rare Raviole Scintillante Étoilée. Dès 3 ans.",
+  deliveryUsd: 9,
   images: ["/big1.png", "/vid2.mp4", "/big3.png"],
   details: [
-    "Jouet sensoriel squishy type bao mystère.",
-    "Marque Crazy Fun.",
-    "Fidget / anti-stress.",
-    "Dès 3 ans.",
-    "1 set par emballage.",
-    "Possibilité de raviole super rare « Starlight » irisée.",
+    "Ceci est un Jouet Sensoriel Fidget Raviole Squishy Mystère.",
+    "Le produit est de la marque Crazy Fun.",
+    "Fonctionne comme jouet sensoriel fidget.",
+    "Ce jouet convient aux enfants de 3 ans et plus.",
+    "Chaque paquet contient 1 ensemble.",
+    "Possibilité de trouver une Super Rare Raviole Scintillante Étoilée.",
   ],
   specs: [
     { label: "Couleur", value: "Mystère" },
-    { label: "Thème", value: "Raviole mystère" },
-    { label: "Marque", value: "RMS" },
+    { label: "Thème", value: "Raviole Mystère" },
+    { label: "Marque", value: "Squishy-Bun" },
     { label: "Personnage", value: "Raviole" },
     {
       label: "Dimensions",
-      value: "Selon la taille (17 cm ou 24 cm) — voir l’option.",
+      value: "10 cm / 3,94 pouces",
     },
-    { label: "Poids", value: "Environ 0,7 à 1,9 kg selon la taille." },
+    { label: "Poids", value: "Env. 0,2 kg par pièce." },
   ],
   options: [
     {
-      id: "size-17",
-      label: "17 cm",
-      sizeCm: 17,
-      priceEuro: 18,
+      id: "pack-1",
+      label: "1 PIÈCE",
+      sizeCm: 10,
+      priceUsd: 18,
     },
     {
-      id: "size-24",
-      label: "24 cm",
-      sizeCm: 24,
-      priceEuro: 26,
+      id: "pack-2",
+      label: "2 PIÈCES",
+      sizeCm: 10,
+      priceUsd: 34,
+    },
+    {
+      id: "pack-4",
+      label: "4 PIÈCES",
+      sizeCm: 10,
+      priceUsd: 65,
+    },
+    {
+      id: "pack-6",
+      label: "6 PIÈCES",
+      sizeCm: 10,
+      priceUsd: 89,
+    },
+    {
+      id: "pack-8",
+      label: "8 PIÈCES",
+      sizeCm: 10,
+      priceUsd: 109,
     },
   ] as ProductSizeOption[],
 } as const;
+
+export type ProductOffer = Omit<typeof singleProductOffer, "id" | "name" | "slug" | "categoryName" | "categoryImage" | "description" | "images" | "details" | "specs" | "options"> & {
+  id: string;
+  name: string;
+  slug: string;
+  categoryName: string;
+  categoryImage: string;
+  description: string;
+  images: readonly string[];
+  details: readonly string[];
+  specs: readonly { label: string; value: string }[];
+  options: ProductSizeOption[];
+  accentColor?: string;
+  badge?: string;
+};
+
+export const products: ProductOffer[] = [
+  {
+    ...singleProductOffer,
+    id: "squishybun-mystery-dumpling",
+    accentColor: "#fdf2f8", // Rose 50
+    badge: "Hot",
+  },
+  {
+    ...singleProductOffer,
+    id: "apple-squishy",
+    name: "Apple Squishy",
+    slug: "apple-squishy",
+    categoryName: "Apple Squishy",
+    categoryImage: "/apple.png",
+    description: "Sweet, squishy, and satisfying Apple Squishy. A perfect addition to your collection.",
+    images: ["/Apple1.png", "/Apple2.png", "/Apple3.png"],
+    details: [
+      "Premium slow-rise PU foam material.",
+      "Sweet Apple-inspired scent for a sensory experience.",
+      "Perfect for stress relief, fidgeting, and desk decoration.",
+      "Vibrant red color with realistic leaf and stem detail.",
+      "Suitable for ages 3 and up.",
+    ],
+    specs: [
+      { label: "Color", value: "Red" },
+      { label: "Material", value: "Slow-Rise PU Foam" },
+      { label: "Theme", value: "Fruit" },
+      { label: "Brand", value: "Crazy Fun" },
+      { label: "Dimensions", value: "6cm Large, 7cm Tall" },
+      { label: "Weight", value: "Approx. 0.2 kg" },
+    ],
+    accentColor: "#fff1f2", // Rose 50
+    options: [
+      {
+        id: "apple-standard",
+        label: "6cm large, 7cm tall",
+        sizeCm: 7,
+        priceUsd: 18,
+      },
+    ],
+  },
+  {
+    ...singleProductOffer,
+    id: "cheese-square",
+    name: "Cheese Square",
+    slug: "cheese-square",
+    categoryName: "Cheese Square Squishy",
+    categoryImage: "/cheese.png",
+    description: "The cheesiest squishy around! Soft, slow-rise Cheese Square that you'll want to squeeze all day.",
+    images: ["/cheese.png"],
+    details: [
+      "Realistic Swiss cheese design with crater holes.",
+      "Premium slow-rise texture that's incredibly satisfying to squeeze.",
+      "Perfect for cheese lovers and fidget toy collectors.",
+      "Durable and high-quality construction.",
+      "Suitable for ages 3 and up.",
+    ],
+    specs: [
+      { label: "Color", value: "Yellow" },
+      { label: "Material", value: "Soft PU Foam / TPR" },
+      { label: "Theme", value: "Food" },
+      { label: "Brand", value: "Crazy Fun" },
+      { label: "Dimensions", value: "12cm x 14cm x 16cm" },
+      { label: "Weight", value: "0.5 kg" },
+    ],
+    accentColor: "#fffbeb", // Amber 50
+    badge: "Trending",
+    options: [
+      {
+        id: "cheese-standard",
+        label: "12cm x 14cm x 16cm",
+        sizeCm: 16,
+        priceUsd: 25,
+      },
+    ],
+  },
+  {
+    ...singleProductOffer,
+    id: "needoh",
+    name: "NeeDoh",
+    slug: "needoh",
+    categoryName: "NeeDoh Squishy",
+    categoryImage: "/needoh.png",
+    description: "Experience extreme relaxation with our vibrant cubes: pink, blue, green, and purple. Designed to evoke a sense of calm and tranquility.",
+    images: ["/needoh1.png", "/needoh2.png", "/videoneedoh.mp4"],
+    details: [
+      "Vibrant cubes: pink, blue, green, and purple.",
+      "Helps deter habits like fidgeting, skin and nail picking, and finger cracking.",
+      "Soft, durable exteriors enclose a high-density groovy goo filling.",
+      "Silent and satisfying fidget experience that won't disturb others.",
+      "Wash with water after frequent use to keep them as good as new!",
+    ],
+    specs: [
+      { label: "Color", value: "Pink, blue, green, purple" },
+      { label: "Material", value: "Soft exterior with high-density groovy goo filling" },
+      { label: "Theme", value: "Sensory Fidget" },
+      { label: "Brand", value: "Crazy Fun" },
+      { label: "Dimensions", value: "2.35 inches per cube" },
+      { label: "Weight", value: "Approx. 0.3 kg" },
+    ],
+    accentColor: "#f0fdf4", // Green 50
+    options: [
+      {
+        id: "needoh-2pcs",
+        label: "2pcs",
+        sizeCm: 6,
+        priceUsd: 24,
+      },
+      {
+        id: "needoh-3pcs",
+        label: "3pcs",
+        sizeCm: 6,
+        priceUsd: 32,
+      },
+      {
+        id: "needoh-4pcs",
+        label: "4pcs",
+        sizeCm: 6,
+        priceUsd: 40,
+      },
+    ],
+  },
+  {
+    ...singleProductOffer,
+    id: "butter-squishy",
+    name: "Butter Squishy",
+    slug: "butter-squishy",
+    categoryName: "Butter Squishy",
+    categoryImage: "/butter.png",
+    description: "Smooth, satisfying, and oh-so-squishy! The Butter Squishy is the ultimate sensory delight.",
+    images: ["/butter.png"],
+    details: [
+      "Ultra-soft slow-rise material designed to look like a butter stick.",
+      "Satisfying dough-like texture for deep sensory play.",
+      "Large size makes it great for two-handed squishing.",
+      "Non-toxic and safe for kids and adults.",
+      "Perfect for decompressing after a long day.",
+    ],
+    specs: [
+      { label: "Color", value: "Buttery Yellow" },
+      { label: "Material", value: "Slow-rise TPR / Foam" },
+      { label: "Theme", value: "Food" },
+      { label: "Brand", value: "Crazy Fun" },
+      { label: "Dimensions", value: "28 cm Stick" },
+      { label: "Weight", value: "0.4 kg" },
+    ],
+    accentColor: "#fffbeb", // Amber 50
+    options: [
+      {
+        id: "butter-standard",
+        label: "28 cm tall",
+        sizeCm: 28,
+        priceUsd: 28,
+      },
+    ],
+  },
+];
 
 export type ProductDetail = {
   id: string;
@@ -275,57 +471,175 @@ export type ProductDetail = {
 export const productDetails: ProductDetail[] = [
   {
     id: "mini-crazy-fun-rainbow",
-    name: "Mini Crazy Fun Rainbow — raviole mystère squishy bun 17 cm",
-    size: "17 cm",
-    price: 9.99,
+    name: "Mini Crazy Fun Rainbow Squishy Bun Mystery Dumpling 9CM (3.54\")",
+    size: "9CM (3.54\")",
+    price: 18,
     description:
-      "Découvrez le jouet sensoriel bao mystère Crazy Fun : déballage excitant, texture squishy satisfaisante, dès 3 ans. Peut-être la raviole rare irisée ? Quelle variante allez-vous recevoir ?",
+      "Discover endless fun with the Mystery Squishy Bao Bun Sensory fidget toy, a delightful addition to the Crazy Fun collection. Each set provides an exciting unboxing experience, where you might uncover a super rare shimmering starlight dumpling. This engaging sensory toy is perfect for children aged 3 and up, offering a satisfying squishy texture and a touch of mystery. Enjoy the tactile play and the thrill of finding out which unique dumpling you receive in your set.",
     details: [
-      "Jouet sensoriel squishy type bao mystère.",
-      "Marque Crazy Fun.",
-      "Fidget / anti-stress.",
-      "Dès 3 ans.",
-      "1 set par emballage.",
-      "Possibilité de raviole super rare « Starlight » irisée.",
+      "This is a Mystery Squishy Bao Bun Sensory Fidget Toy.",
+      "The product is from the brand Crazy Fun.",
+      "It functions as a sensory fidget toy.",
+      "This toy is suitable for ages 3 and up.",
+      "Each package contains 1 set.",
+      "There is a possibility to find a Super Rare Shimmering Starlight Dumpling.",
     ],
     specs: {
-      color: "Mystère",
-      theme: "Raviole mystère",
-      brand: "RMS",
-      character: "Raviole",
-      dimensions: "17 × 17 × 12,75 cm",
-      weight: "Environ 0,73 kg",
+      color: "Mystery",
+      theme: "Mystery Dumpling",
+      brand: "Squishy-Bun",
+      character: "Dumpling",
+      dimensions: "3.54 x 3.54 x 2.66 Inches (9 x 9 x 6.75 cm)",
+      weight: "1.60 lb (0.73 kg)",
+    },
+    images: ["/big1.png", "/vid2.mp4", "/big3.png"],
+  },
+  {
+    id: "medium-crazy-fun-rainbow",
+    name: "Medium Crazy Fun Rainbow Squishy Bun Mystery Dumpling 15CM (5.90\")",
+    size: "15CM (5.90\")",
+    price: 26,
+    description:
+      "Discover endless fun with the Mystery Squishy Bao Bun Sensory fidget toy, a delightful addition to the Crazy Fun collection. Each set provides an exciting unboxing experience, where you might uncover a super rare shimmering starlight dumpling. This engaging sensory toy is perfect for children aged 3 and up, offering a satisfying squishy texture and a touch of mystery. Enjoy the tactile play and the thrill of finding out which unique dumpling you receive in your set.",
+    details: [
+      "This is a Mystery Squishy Bao Bun Sensory Fidget Toy.",
+      "The product is from the brand Crazy Fun.",
+      "It functions as a sensory fidget toy.",
+      "This toy is suitable for ages 3 and up.",
+      "Each package contains 1 set.",
+      "There is a possibility to find a Super Rare Shimmering Starlight Dumpling.",
+    ],
+    specs: {
+      color: "Mystery",
+      theme: "Mystery Dumpling",
+      brand: "Squishy-Bun",
+      character: "Dumpling",
+      dimensions: "5.90 x 5.90 x 4.40 Inches (15 x 15 x 11.25 cm)",
+      weight: "2.40 lb (1.10 kg)",
     },
     images: ["/big1.png", "/vid2.mp4", "/big3.png"],
   },
   {
     id: "big-crazy-fun-rainbow",
-    name: "Grand Crazy Fun Rainbow — raviole mystère squishy bun 28 cm",
-    size: "28 cm",
-    price: 24.99,
+    name: "i Crazy Fun Rainbow Squishy Bun Mystery Dumpling 25CM (9.84\")",
+    size: "25CM (9.84\")",
+    price: 35,
     compareAt: 29.97,
     description:
-      "Découvrez le jouet sensoriel bao mystère Crazy Fun : déballage excitant, texture squishy satisfaisante, dès 3 ans. Peut-être la raviole rare irisée ? Quelle variante allez-vous recevoir ?",
+      "Discover endless fun with the Mystery Squishy Bao Bun Sensory fidget toy, a delightful addition to the Crazy Fun collection. Each set provides an exciting unboxing experience, where you might uncover a super rare shimmering starlight dumpling. This engaging sensory toy is perfect for children aged 3 and up, offering a satisfying squishy texture and a touch of mystery. Enjoy the tactile play and the thrill of finding out which unique dumpling you receive in your set.",
     details: [
-      "Jouet sensoriel squishy type bao mystère.",
-      "Marque Crazy Fun.",
-      "Fidget / anti-stress.",
-      "Dès 3 ans.",
-      "1 set par emballage.",
-      "Possibilité de raviole super rare « Starlight » irisée.",
+      "This is a Mystery Squishy Bao Bun Sensory Fidget Toy.",
+      "The product is from the brand Crazy Fun.",
+      "It functions as a sensory fidget toy.",
+      "This toy is suitable for ages 3 and up.",
+      "Each package contains 1 set.",
+      "There is a possibility to find a Super Rare Shimmering Starlight Dumpling.",
     ],
     specs: {
-      color: "Mystère",
-      theme: "Raviole mystère",
-      brand: "RMS",
-      character: "Raviole",
-      dimensions: "28 × 28 × 21 cm",
-      weight: "Environ 1,90 kg",
+      color: "Mystery",
+      theme: "Mystery Dumpling",
+      brand: "Squishy-Bun",
+      character: "Dumpling",
+      dimensions: "9.84 x 9.84 x 7.38 Inches (25 x 25 x 18.75 cm)",
+      weight: "4.20 lb (1.90 kg)",
     },
     images: ["/big1.png", "/vid2.mp4", "/big3.png"],
   },
+  {
+    id: "apple-squishy",
+    name: "Apple Squishy",
+    size: "6cm large, 7cm tall",
+    price: 18,
+    description: "Sweet, squishy, and satisfying Apple Squishy. A perfect addition to your collection.",
+    details: [
+      "Premium slow-rise PU foam material.",
+      "Sweet Apple-inspired scent for a sensory experience.",
+      "Perfect for stress relief, fidgeting, and desk decoration.",
+      "Vibrant red color with realistic leaf and stem detail.",
+      "Suitable for ages 3 and up.",
+    ],
+    specs: {
+      color: "Red",
+      theme: "Fruit",
+      brand: "Crazy Fun",
+      character: "Apple",
+      dimensions: "6cm Large, 7cm Tall",
+      weight: "0.2 kg",
+    },
+    images: ["/Apple1.png", "/Apple2.png", "/Apple3.png"],
+  },
+  {
+    id: "cheese-square",
+    name: "Cheese Square",
+    size: "12cm x 14cm x 16cm",
+    price: 25,
+    description: "The cheesiest squishy around! Soft, slow-rise Cheese Square that you'll want to squeeze all day.",
+    details: [
+      "Realistic Swiss cheese design with crater holes.",
+      "Premium slow-rise texture that's incredibly satisfying to squeeze.",
+      "Perfect for cheese lovers and fidget toy collectors.",
+      "Durable and high-quality construction.",
+      "Suitable for ages 3 and up.",
+    ],
+    specs: {
+      color: "Yellow",
+      theme: "Food",
+      brand: "Crazy Fun",
+      character: "Cheese",
+      dimensions: "12cm x 14cm x 16cm",
+      weight: "0.5 kg",
+    },
+    images: ["/cheese.png"],
+  },
+  {
+    id: "butter-squishy",
+    name: "Butter Squishy",
+    size: "28 cm tall",
+    price: 28,
+    description: "Smooth, satisfying, and oh-so-squishy! The Butter Squishy is the ultimate sensory delight.",
+    details: [
+      "Ultra-soft slow-rise material designed to look like a butter stick.",
+      "Satisfying dough-like texture for deep sensory play.",
+      "Large size makes it great for two-handed squishing.",
+      "Non-toxic and safe for kids and adults.",
+      "Perfect for decompressing after a long day.",
+    ],
+    specs: {
+      color: "Buttery Yellow",
+      theme: "Food",
+      brand: "Crazy Fun",
+      character: "Butter",
+      dimensions: "28 cm Stick",
+      weight: "0.4 kg",
+    },
+    images: ["/butter.png"],
+  },
+  {
+    id: "needoh",
+    name: "NeeDoh",
+    size: "2.35 inches per cube",
+    price: 24,
+    description: "Experience extreme relaxation with our vibrant cubes: pink, blue, green, and purple, designed to evoke a sense of calm and tranquility. These brightly colored soft squares offer a soothing tactile experience, perfect for individuals seeking stress relief, including those with ADD/ADHD, OCD, autism, or high anxiety. Whether you're in the office, classroom, traveling, or aboard an airplane, these anxiety relief toys keep you focused and entertained. Mellow and cool to the touch, their soft, durable exteriors encase a high-density groovy goo filling. Wash with water after frequent use and it will be as good as new!",
+    details: [
+      "Vibrant cubes: pink, blue, green, and purple.",
+      "Helps deter habits like fidgeting, skin and nail picking, and finger cracking.",
+      "Soft, durable exteriors enclose a high-density groovy goo filling.",
+      "Silent and satisfying fidget experience that won't disturb others.",
+      "Wash with water after frequent use to keep them as good as new!",
+    ],
+    specs: {
+      color: "Pink, blue, green, purple",
+      theme: "Sensory Fidget",
+      brand: "Crazy Fun",
+      character: "Cube",
+      dimensions: "2.35 inches per cube",
+      weight: "0.3 kg",
+    },
+    images: ["/needoh1.png", "/needoh2.png", "/videoneedoh.mp4"],
+  },
 ];
 
+/** “The buzz is everywhere” — only these `/public` MP4s (no posters or extra assets). */
 export const buzzReelVideos = [
   "/dumpling-1-trimmed.mp4",
   "/dumpling-2-trimmed.mp4",

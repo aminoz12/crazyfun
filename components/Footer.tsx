@@ -21,7 +21,7 @@ export function Footer() {
         */}
         <div className="grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-3 gap-y-4 md:grid-cols-[1fr_auto_1fr] md:gap-x-4 md:gap-y-0">
           <span className="col-start-1 row-start-1 min-w-0 justify-self-start self-start pr-2 leading-tight font-[family-name:var(--font-fredoka)] text-sm font-black tracking-tight text-white sm:text-base md:pr-0">
-            SquishyBun Dumplings.
+            SquishyBun Ravioles.
           </span>
 
           <div className="col-span-2 row-start-2 flex flex-wrap justify-center gap-x-2 gap-y-2 px-0 sm:gap-3 md:col-span-1 md:col-start-2 md:row-start-1 md:px-1">
@@ -38,7 +38,7 @@ export function Footer() {
           </div>
 
           <nav
-            aria-label="Réseaux sociaux"
+            aria-label="Social"
             className="col-start-2 row-start-1 flex min-w-0 shrink-0 flex-col items-end gap-3 self-start text-[10px] font-extrabold uppercase tracking-wide sm:gap-4 sm:text-xs md:col-start-3 md:row-start-1"
           >
             <a
@@ -75,8 +75,7 @@ export function Footer() {
         </div>
 
         <p className="mt-5 border-t border-white/20 pt-4 text-center text-xs font-semibold text-white/85 sm:mt-6 sm:pt-5 sm:text-sm">
-          © {new Date().getFullYear()} SquishyBun Dumplings — Livraison Europe ·
-          Paiement en EUR
+          © {new Date().getFullYear()}
         </p>
       </div>
     </footer>

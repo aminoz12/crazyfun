@@ -2,13 +2,13 @@ import { NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe-server";
 
 /**
- * Confirms a Checkout Session after redirect (read-only, for UI).
+ * ConfiSquishy-Bun a Checkout Session after redirect (read-only, for UI).
  * For inventory / fulfillment, add a Stripe webhook later.
  */
 export async function GET(request: Request) {
   if (!process.env.STRIPE_SECRET_KEY?.trim()) {
     return NextResponse.json(
-      { error: "STRIPE_SECRET_KEY n’est pas défini" },
+      { error: "STRIPE_SECRET_KEY is not set" },
       { status: 500 },
     );
   }
@@ -16,7 +16,7 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const sessionId = searchParams.get("session_id");
   if (!sessionId || !sessionId.startsWith("cs_")) {
-    return NextResponse.json({ error: "Session invalide" }, { status: 400 });
+    return NextResponse.json({ error: "Invalid session" }, { status: 400 });
   }
 
   try {
@@ -32,6 +32,6 @@ export async function GET(request: Request) {
         session.customer_details?.email ?? session.customer_email ?? null,
     });
   } catch {
-    return NextResponse.json({ error: "Session introuvable" }, { status: 404 });
+    return NextResponse.json({ error: "Session not found" }, { status: 404 });
   }
 }
